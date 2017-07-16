@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android," />
 
 
 
@@ -95,15 +95,17 @@
 
 
 
-<meta name="description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="龙逝寒Android博客">
-<meta property="og:url" content="http://yoursite.com/tags/android/index.html">
+<meta name="description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 ##第1部分：什么是事件总线？让我们来">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EventBus翻译">
+<meta property="og:url" content="http://yoursite.com/2017/07/16/eventBus/index.html">
 <meta property="og:site_name" content="龙逝寒Android博客">
-<meta property="og:description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
+<meta property="og:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 ##第1部分：什么是事件总线？让我们来">
+<meta property="og:updated_time" content="2017-07-16T10:23:21.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="龙逝寒Android博客">
-<meta name="twitter:description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
+<meta name="twitter:title" content="EventBus翻译">
+<meta name="twitter:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 ##第1部分：什么是事件总线？让我们来">
 
 
 
@@ -131,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/android/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/16/eventBus/"/>
 
 
 
 
 
-  <title>标签: android | 龙逝寒Android博客</title>
+  <title>EventBus翻译 | 龙逝寒Android博客</title>
   
 
 
@@ -172,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,72 +296,199 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>android<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/16/SharedPreferencesUtils/" itemprop="url">
-              
-                <span itemprop="name">SharedPreferencesUtils存储对象</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T13:42:58+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/16/eventBus/" itemprop="url">
-              
-                <span itemprop="name">EventBus翻译</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T13:42:58+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/eventBus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="龙逝寒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙逝寒Android博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">EventBus翻译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T13:42:58+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇文章是RxBus的权威文章的翻译,<a href="http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/" target="_blank" rel="external">原文</a>，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。<br>这篇文章有三个部分：</p>
+<ul>
+<li>1.事件总线快速入门</li>
+<li>2.用RxJava实现事件总线</li>
+<li>3.这种方法的离别思念</li>
+</ul>
+<p>“RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。</p>
+<p>##第1部分：什么是事件总线？<br>让我们来谈谈两个似乎相似的概念：观察者模式和发布 - 订阅模式。<br>观察者模式<br>这是一个发展模式，借助此，你的类或主对象（被称为可观察者）利用相关信息（事件）通知其他感兴趣的类或对象（称为观察者）。<br>发布 - 订阅模式<br>发布 - 订阅模式的目标和观察者模式的目标是完全一样的，即你想要一些其他的类来了解正在发生的某些事件。<br>尽管如此，观察者模式和发布 - 订阅模式之间存在一个重要的语义差别：发布 - 订阅模式的重点是外界“广播”的消息。观察者并不关注事件传给谁，而只关注事件是否已经传出。换句话说，观察者（发布者）并不关注谁是观察员（订阅者）。<br>为什么匿名？<br>它允许这个东西叫做“脱钩”，这是计算机编程具有良好的口碑。在设计中，你想尽可能的保持低耦合。<br>通常情况下，你会期望发布者对每个它需要通知的用户有直接的了解，所以当事件或消息已准备就绪时，它可以去通知他们每个人。但随着事件的总线的出现，发布者被解除该任务，并且这种独立性有所帮助，因为发布者和订阅者不必有建立两者之间相关性的逻辑代码。<br>换句话说“自觉低耦论”是你的代码在书写时就应该所思考的，这是程序员应该有的水平。<br>如何匿名？<br>在发布 - 订阅模式中一个很自然的问题是：你如何真正地实现发布者和订阅者之间的匿名？一个简单的方法是得到一个中间人，让那个中间人负责所有的通信。而事件总线就是这样的一个中间人。<br>事件总线就是这么简单。<br>常用于Android的使用的两个事件总线库是otto和EventBus。网上有大量的帖子解释如何在你的手机应用程序中实现它们。</p>
+<p>##第2部分：用总线RxJava实现事件（？？是“在”还是“用”）<br>我已经将使用Android上RxJava的显示世界的例子粘贴在这个GitHub库上，所以我会坚持展示其完整的实现方式。下面是执行的部分代码：</p>
+<pre><code>// this is the middleman object
+public class RxBus {
+
+private final Subject&lt;Object, Object&gt; _bus = new SerializedSubject&lt;&gt;(PublishSubject.create());
+  public void send(Object o) {
+        _bus.onNext(o);
+  }
+
+  public Observable&lt;Object&gt; toObserverable() {
+    return _bus;
+  }
+}
+</code></pre><p>你现在有一个事件总线可以使用了。<br>这是你如何将事件发布到总线：</p>
+<pre><code>@OnClick(R.id.btn_demo_rxbus_tap)
+public void onTapButtonClicked() {
+
+_rxBus.send(new TapEvent());
+}
+</code></pre><p>这是你如何倾听来自其他片段/服务等。</p>
+<pre><code>_rxBus.toObserverable()
+.subscribe(new Action1&lt;Object&gt;() {
+  @Override
+  public void call(Object event) {
+
+    if(event instanceof TapEvent) {
+      _showTapText();
+
+    }else if(event instanceof SomeOtherEvent) {
+      _doSomethingElse();
+    }
+  }
+});
+</code></pre><p>在这个例子中，我们后从顶部片段（绿色部分）的事件，并从底部片段（蓝色部分）中（通过总线）收听。<br>在下面这个例子中，我们从顶部片段（绿色方）发布事件，并从底部片段（蓝色部分）收听（通过事件总线）。</p>
+<p>##第3部分 - 离别的思念</p>
+<p>死亡事件</p>
+<p>在一些情况下，知道是否有观察者监听当前总线是非常有用的。比如，如果你使用事件总线来处理你的GCM推送通知），如果应用程序是在前台 ，此时你不希望发送推送通知，这时，监听“死亡事件”是非常重要的。<br>例如，在不久前发布的婚礼派对，我们增加了“信息”到我们的应用程序。如果用户的应用程序开启（因而具有至少一个或更多的听众到总线），我们不会发送推送通知，但如果他们的应用程序在后台，那么我们发送推送通知，让他们知道聊天信息。当一个事件被发布到事件总线后，如果没有用户在听，会返回一个死亡事件。如果我们得到一个死亡事件，推送通知的将被发送出去。<br>你将怎样利用RxBus来实现呢？</p>
+<p>事实上，这很容易。受试者有一个有用的方法hasObservers，这将准确的告诉我们实现方式。这被添加RxJava的1.x release 中，所以你必须要安装RxAndroid的最新版本才能看到这种方法（0.23.0）。<br>如果你只是想在Andr​​oid应用程序中使用事件总线，你可能最好使用otto（强烈推荐）或EventBus库 。Otto有一个由注解推动的干净的API，可能更为简单易用。</p>
+<p>虽然这篇文章写得很好，翻译的不好，以下的博客将会介绍EventBus的一般使用和RXJava及RxBus的使用。<br><a href="http://blog.csdn.net/u012930328/article/details/51993346" target="_blank" rel="external">Csdn原文</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/16/SharedPreferencesUtils/" rel="prev" title="SharedPreferencesUtils存储对象">
+                SharedPreferencesUtils存储对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -367,6 +496,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -593,10 +726,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
