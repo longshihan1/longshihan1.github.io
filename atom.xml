@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-15T13:50:56.667Z</updated>
+  <updated>2017-07-16T05:58:32.282Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,66 +16,227 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ceshi demo</title>
-    <link href="http://yoursite.com/2017/07/15/test1/"/>
-    <id>http://yoursite.com/2017/07/15/test1/</id>
-    <published>2017-07-15T13:04:58.000Z</published>
-    <updated>2017-07-15T13:50:56.667Z</updated>
+    <title></title>
+    <link href="http://yoursite.com/2017/07/16/SharedPreferencesUtils/"/>
+    <id>http://yoursite.com/2017/07/16/SharedPreferencesUtils/</id>
+    <published>2017-07-16T05:58:32.282Z</published>
+    <updated>2017-07-16T05:58:32.282Z</updated>
     
-    <content type="html"><![CDATA[<p>##这个只是一个测试用的MD</p>
-<p><img src="http://oqsn5psbq.bkt.clouddn.com/test.png?attname=&amp;e=1500127273&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:1_GMbpp6DyAdu1PFfs5QtqtWHy0" alt=""></p>
-<pre><code>import java
-</code></pre><ul>
-<li>第一条</li>
-<li>第二条</li>
+    <content type="html"><![CDATA[<hr>
+<p>title:SharedPreferencesUtils存储对象<br>date:2017-07-16 13:42:58<br>tags:android</p>
+<hr>
+<h2 id="SharedPreferencesUtils存储对象"><a href="#SharedPreferencesUtils存储对象" class="headerlink" title="SharedPreferencesUtils存储对象"></a>SharedPreferencesUtils存储对象</h2><p>SharedPreferences可以存储基本类型，在这里不多阐述。在这里主要介绍怎么存储对象。<br>在我学习优化Utils工具包的一些常见的工具类。<br>在百度上的一些关于SharedPreferences存储对象的方式的使用Base64转，或者转成json类型，存入SharedPreferences中，这样写显得很笨拙。并不符合我的需求。在此给一种新的方法（我也不确定，应该很早就有这样写的吧）。<br><a id="more"></a></p>
+<ul>
+<li><strong>读写基本数据类型</strong></li>
+<li><strong>读写Javabean类型</strong></li>
+<li><strong>读写List<javabean*>类型</javabean*></strong></li>
+<li><strong>读写图片资源</strong></li>
 </ul>
+<hr>
+<p>##1， 读写基本数据类型<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">/**</span></div><div class="line">    * 存储基本数据类型</div><div class="line">    * <span class="doctag">@param</span> context </div><div class="line">    * <span class="doctag">@param</span> key key</div><div class="line">    * <span class="doctag">@param</span> data value</div><div class="line">    */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">saveData</span><span class="params">(Context context, String key, Object data)</span> </span>&#123;</div><div class="line">       String type = data.getClass().getSimpleName();</div><div class="line">       SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context</div><div class="line">               .MODE_PRIVATE);<span class="comment">//读写基本数据类型都是在一个特定的文件，以软件的包名为文件名</span></div><div class="line">       Editor editor = sharedPreferences.edit();</div><div class="line">       <span class="keyword">if</span> (<span class="string">"Integer"</span>.equals(type)) &#123;<span class="comment">//注意这里是integer对象，同下</span></div><div class="line">           editor.putInt(key, (Integer) data);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Boolean"</span>.equals(type)) &#123;</div><div class="line">           editor.putBoolean(key, (Boolean) data);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"String"</span>.equals(type)) &#123;</div><div class="line">           editor.putString(key, (String) data);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Float"</span>.equals(type)) &#123;</div><div class="line">           editor.putFloat(key, (Float) data);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Long"</span>.equals(type)) &#123;</div><div class="line">           editor.putLong(key, (Long) data);</div><div class="line">       &#125;</div><div class="line">       editor.commit();</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 读取基本数据类型</div><div class="line">    * <span class="doctag">@param</span> context</div><div class="line">    * <span class="doctag">@param</span> key key</div><div class="line">    * <span class="doctag">@param</span> defValue 当取不到值时返回默认值</div><div class="line">    * <span class="doctag">@return</span></div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getData</span><span class="params">(Context context, String key, Object defValue)</span> </span>&#123;</div><div class="line">       String type = defValue.getClass().getSimpleName();</div><div class="line">       SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context</div><div class="line">               .MODE_PRIVATE);  <span class="comment">//defValue为为默认值，如果当前获取不到数据就返回它 </span></div><div class="line">       <span class="keyword">if</span> (<span class="string">"Integer"</span>.equals(type)) &#123;</div><div class="line">           <span class="keyword">return</span> sharedPreferences.getInt(key, (Integer) defValue);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Boolean"</span>.equals(type)) &#123;</div><div class="line">           <span class="keyword">return</span> sharedPreferences.getBoolean(key, (Boolean) defValue);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"String"</span>.equals(type)) &#123;</div><div class="line">           <span class="keyword">return</span> sharedPreferences.getString(key, (String) defValue);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Float"</span>.equals(type)) &#123;</div><div class="line">           <span class="keyword">return</span> sharedPreferences.getFloat(key, (Float) defValue);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Long"</span>.equals(type)) &#123;</div><div class="line">           <span class="keyword">return</span> sharedPreferences.getLong(key, (Long) defValue);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>将常用到的基本数据类型存入特定的文件中，获取的时候也十分方便快捷。（PS，string不是基本数据类型）</p>
+<p>##读写Javabean类型<br>先期准备<br>Javabean是序列化的，需要继承Serializable接口，实现serialVersionUID。<br>1.判断处理是否是各个数据类型</p>
+<pre><code> private static boolean isObject(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; !isSingle(clazz) &amp;&amp; !isArray(clazz) &amp;&amp; !isCollection(clazz) &amp;&amp; !isMap(clazz);
+}
+
+private static boolean isSingle(Class&lt;?&gt; clazz) {
+    return isBoolean(clazz) || isNumber(clazz) || isString(clazz);
+}
+
+public static boolean isBoolean(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; (Boolean.TYPE.isAssignableFrom(clazz) || Boolean.class.isAssignableFrom(clazz));
+}
+
+public static boolean isNumber(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; (Byte.TYPE.isAssignableFrom(clazz) || Short.TYPE.isAssignableFrom(clazz) || Integer.TYPE.isAssignableFrom(clazz) || Long.TYPE.isAssignableFrom(clazz) || Float.TYPE.isAssignableFrom(clazz) || Double.TYPE.isAssignableFrom(clazz) || Number.class.isAssignableFrom(clazz));
+}
+
+public static boolean isString(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; (String.class.isAssignableFrom(clazz) || Character.TYPE.isAssignableFrom(clazz) || Character.class.isAssignableFrom(clazz));
+}
+
+public static boolean isArray(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; clazz.isArray();
+}
+
+public static boolean isCollection(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; Collection.class.isAssignableFrom(clazz);
+}
+
+public static boolean isMap(Class&lt;?&gt; clazz) {
+    return clazz != null &amp;&amp; Map.class.isAssignableFrom(clazz);
+}
+private static boolean isParcelableCreator(Field field) {
+    return Modifier.toString(field.getModifiers()).equals(&quot;public static final&quot;) &amp;&amp; &quot;CREATOR&quot;
+            .equals(field.getName());
+}
+</code></pre><p>2,插入数据</p>
+<pre><code> public static void setObject(Context context, Object o) {
+    Field[] fields = o.getClass().getDeclaredFields();//获取所有声明的属性
+    SharedPreferences sp = context.getSharedPreferences(o.getClass().getName(), 0);//将存储的文件名改为Javabean的包名+類名
+    SharedPreferences.Editor editor = sp.edit();
+
+    for (int i = 0; i &lt; fields.length; ++i) {
+        if (!isParcelableCreator(fields[i])) {
+            Class type = fields[i].getType();//类型 class java.lang.class
+            String name = fields[i].getName();//名称 id
+            Object e;
+            if (isSingle(type)) {
+                try {
+                    if (type != Character.TYPE &amp;&amp; !type.equals(String.class)) {
+                        if (!type.equals(Integer.TYPE) &amp;&amp; !type.equals(Short.class)) {
+                            if (type.equals(Double.TYPE)) {
+                                editor.putLong(name, Double.doubleToLongBits(fields[i]
+                                        .getDouble(o)));//将double类型的数值存入
+                            } else if (type.equals(Float.TYPE)) {
+                                editor.putFloat(name, fields[i].getFloat(o));//将float类型的数值存入
+                            } else if (type.equals(Long.TYPE) &amp;&amp; !name.equals(&quot;serialVersionUID&quot;)) {
+                                editor.putLong(name, fields[i].getLong(o));//将long类型的数值存入
+                            } else if (type.equals(Boolean.TYPE)) {
+                                editor.putBoolean(name, fields[i].getBoolean(o));//将boolean类型的数值存入
+                            }
+                        } else {
+                            editor.putInt(name, fields[i].getInt(o));//将int类型的数值存入
+                        }
+                    } else {
+                        e = fields[i].get(o);//将string类型的数值存入
+                        editor.putString(name, null == e ? null : e.toString());
+                    }
+                } catch (Exception var14) {
+                }
+                }else if (isObject(type)) {
+                    try {
+                        e = fields[i].get(o);
+                        if (null != e) {
+                            setObject(context, e);
+                        } else {
+                            try {
+                                setObject(context, fields[i].getClass().newInstance());//重新跑一遍
+                            } catch (InstantiationException var11) {
+                            }
+                        }
+                    } catch (Exception var12) {
+
+                    }
+                } else {
+                try {
+                    e = fields[i].get(o);
+                    //转成json插入
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+            }
+        }
+    editor.apply();
+}
+
+public static &lt;T&gt; T getObject(Context context, Class&lt;T&gt; clazz) {
+    Object o = null;
+
+    try {
+        o = clazz.newInstance();
+    } catch (InstantiationException e) {
+        e.printStackTrace();
+        return (T) o;
+    } catch (IllegalAccessException e) {
+        e.printStackTrace();
+        return (T) o;
+    }
+
+    Field[] fields = clazz.getDeclaredFields();
+    SharedPreferences sp = context.getSharedPreferences(clazz.getName(), 0);
+
+    for(int i = 0; i &lt; fields.length; ++i) {
+        if(!isParcelableCreator(fields[i])) {
+            Class type = fields[i].getType();
+            String name = fields[i].getName();
+            String o_1;
+            if(isSingle(type)) {
+                try {
+                    fields[i].setAccessible(true);
+                    if(type != Character.TYPE &amp;&amp; !type.equals(String.class)) {
+                        if(!type.equals(Integer.TYPE) &amp;&amp; !type.equals(Short.class)){
+                            if(type.equals(Double.TYPE)) {
+                                fields[i].setDouble(o, Double.longBitsToDouble(sp.getLong(name, 0L)));
+                            } else if(type.equals(Float.TYPE)) {
+                                fields[i].setFloat(o, sp.getFloat(name, 0.0F));
+                            } else if(type.equals(Long.TYPE)) {
+                                fields[i].setLong(o, sp.getLong(name, 0L));
+                            } else if(type.equals(Boolean.TYPE)) {
+                                fields[i].setBoolean(o, sp.getBoolean(name, false));
+                            }
+                        } else {
+                            fields[i].setInt(o, sp.getInt(name, 0));
+                        }
+                    } else {
+                        o_1 = sp.getString(name, (String)null);
+                        if(null != o_1) {
+                            fields[i].set(o, o_1);
+                        }
+                    }
+                } catch (Exception e) {
+
+                }
+            } else if(isObject(type)) {
+                Object tempValue = getObject(context, fields[i].getType());
+                if(null != tempValue) {
+                    fields[i].setAccessible(true);
+
+                    try {
+                        fields[i].set(o, tempValue);
+                    } catch (Exception e) {
+
+                    } 
+                }
+            } else {
+                //json数据解析
+            }
+        }
+    }
+
+    return (T) o;
+}
+</code></pre><p>主要的思想就是遍历javabean所有的属性对象，取出，按照类型一个个的存入XML文件中。<br>取出时也是同时转成了存入的形式，很方便利</p>
+<h2 id="读写List-lt-Javabean-gt"><a href="#读写List-lt-Javabean-gt" class="headerlink" title="读写List&lt;Javabean&gt;"></a>读写List&lt;<em>Javabean</em>&gt;</h2><p>对于list&lt;<em>javabean</em>&gt;，不太适合用上面的方法，一般来说不太会存这种数据，数据量比较大。如果有这个需求，可以把list&lt;<em>javabean</em>&gt;转成json形式，然后存入xml文件中。关于Javabean数据转成json会在另一篇叙述。</p>
+<p>##读写图片资源</p>
+<p>所谓的读写图片，个人感觉用处不大，先说一下思路。其实也很简单，就是通过base64将输出流转成string。<br>代码奉上：</p>
+<pre><code> private void saveBitmapToSharedPreferences(Context context,String key,Bitmap bitmap){  
+    //第一步:将Bitmap压缩至字节数组输出流ByteArrayOutputStream  
+    ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();  
+    bitmap.compress(CompressFormat.PNG, 80, byteArrayOutputStream);  
+    //第二步:利用Base64将字节数组输出流中的数据转换成字符串String  
+    byte[] byteArray=byteArrayOutputStream.toByteArray();  
+    String imageString=new String(Base64.encodeToString(byteArray, Base64.DEFAULT));  
+    //第三步:将String保持至SharedPreferences  
+    SharedPreferences sharedPreferences=context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);  
+    Editor editor=sharedPreferences.edit();  
+    editor.putString(key, imageString);  
+    editor.commit();  
+}  
+
+private Bitmap getBitmapFromSharedPreferences(Context context, String key, Object defValue){  
+    SharedPreferences sharedPreferences=getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);  
+    //第一步:取出字符串形式的Bitmap  
+    String imageString=context.sharedPreferences.getString(key,defValue);  
+    //第二步:利用Base64将字符串转换为ByteArrayInputStream  
+    byte[] byteArray=Base64.decode(imageString, Base64.DEFAULT);  
+    ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(byteArray);  
+    //第三步:利用ByteArrayInputStream生成Bitmap  
+    Bitmap bitmap=BitmapFactory.decodeStream(byteArrayInputStream);  
+    return bitmap; 
+}  
+</code></pre><p>##结束<br>简单叙述了下SharedPreferences的使用，毕竟作为Android中几个主要的存储数据的方式，熟练掌握还是 非常有必要的。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;##这个只是一个测试用的MD&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://oqsn5psbq.bkt.clouddn.com/test.png?attname=&amp;amp;e=1500127273&amp;amp;token=4c_iy_FSofVZ5RZGp4Zc590p4Sy
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/07/14/hello-world/"/>
-    <id>http://yoursite.com/2017/07/14/hello-world/</id>
-    <published>2017-07-15T03:25:04.103Z</published>
-    <updated>2017-07-15T03:25:04.103Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Test Page</title>
-    <link href="http://yoursite.com/2017/07/14/Test-Page/"/>
-    <id>http://yoursite.com/2017/07/14/Test-Page/</id>
-    <published>2017-07-14T17:31:58.000Z</published>
-    <updated>2017-07-15T05:31:58.997Z</updated>
-    
-    <summary type="html">
+      &lt;hr&gt;
+&lt;p&gt;title:SharedPreferencesUtils存储对象&lt;br&gt;date:2017-07-16 13:42:58&lt;br&gt;tags:android&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;SharedPreferencesUtils存储对象&quot;&gt;&lt;a href=&quot;#SharedPreferencesUtils存储对象&quot; class=&quot;headerlink&quot; title=&quot;SharedPreferencesUtils存储对象&quot;&gt;&lt;/a&gt;SharedPreferencesUtils存储对象&lt;/h2&gt;&lt;p&gt;SharedPreferences可以存储基本类型，在这里不多阐述。在这里主要介绍怎么存储对象。&lt;br&gt;在我学习优化Utils工具包的一些常见的工具类。&lt;br&gt;在百度上的一些关于SharedPreferences存储对象的方式的使用Base64转，或者转成json类型，存入SharedPreferences中，这样写显得很笨拙。并不符合我的需求。在此给一种新的方法（我也不确定，应该很早就有这样写的吧）。&lt;br&gt;
     
     </summary>
     
