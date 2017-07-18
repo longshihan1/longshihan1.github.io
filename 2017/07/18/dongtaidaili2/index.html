@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -95,15 +95,21 @@
 
 
 
-<meta name="description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="龙逝寒Android博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 系列（一） 动态代理（中）">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/dongtaidaili2/index.html">
 <meta property="og:site_name" content="龙逝寒Android博客">
-<meta property="og:description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
+<meta property="og:description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
+<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500359908&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ">
+<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86%E8%A3%85%E9%A5%B0.png?attname=&e=1500367034&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:g_IrjFnUOSlGzblI2M1_mVjL4zw">
+<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/=%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500367040&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:W9i0FDPrPHKw0eqlUl5Nr1VncqY">
+<meta property="og:updated_time" content="2017-07-18T12:51:08.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="龙逝寒Android博客">
-<meta name="twitter:description" content="天下事有难易乎?为之,则难者亦易矣;不为,则易者亦难矣.">
+<meta name="twitter:title" content="java 系列（一） 动态代理（中）">
+<meta name="twitter:description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
+<meta name="twitter:image" content="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500359908&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ">
 
 
 
@@ -131,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/18/dongtaidaili2/"/>
 
 
 
 
 
-  <title>归档 | 龙逝寒Android博客</title>
+  <title>java 系列（一） 动态代理（中） | 龙逝寒Android博客</title>
   
 
 
@@ -172,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,177 +300,356 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/18/dongtaidaili1/" itemprop="url">
-              
-                <span itemprop="name">java 系列（一） 动态代理（上）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-18T13:17:02+08:00"
-              content="2017-07-18" >
-          07-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/18/dongtaidaili2/" itemprop="url">
-              
-                <span itemprop="name">java 系列（一） 动态代理（中）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-18T13:17:02+08:00"
-              content="2017-07-18" >
-          07-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/16/SharedPreferencesUtils/" itemprop="url">
-              
-                <span itemprop="name">SharedPreferencesUtils存储对象</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T13:42:58+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/16/eventBus/" itemprop="url">
-              
-                <span itemprop="name">EventBus翻译</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T13:42:58+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/dongtaidaili2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="龙逝寒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙逝寒Android博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java 系列（一） 动态代理（中）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T13:17:02+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。</p>
+</blockquote>
+<h1 id="1-动态代理和装饰器模式"><a href="#1-动态代理和装饰器模式" class="headerlink" title="1.动态代理和装饰器模式"></a>1.动态代理和装饰器模式</h1><ul>
+<li><p>1.装饰器模式的介绍：</p>
+<p> 装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。<br><br> 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头来看javaIO流的思维导图，想必会恍然大悟了。<br><br> 例图：<br></p>
+<p> <img src="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500359908&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ" alt=""></p>
+<p> （ps:这个图会和我们下面将要讲的装饰器模式+动态代理的UML图一致，不再重复显示）</p>
+</li>
+<li><p>2.两者区别</p>
+</li>
+</ul>
+<p>两者都可以在保持主业务流程下，对对象进行添加方法，增强这个类的使用。<br><br>   但两者有着一些区别：<br><br>   装饰器模式继承了接口，添加了新类，而代理没有对原代码有任何操作。<br><br>   装饰器中的继承和创建新类，会造成出现大量的包装类，对于代码阅读是有困难的。</p>
+<h1 id="2-动态代理的装饰器模式搭配"><a href="#2-动态代理的装饰器模式搭配" class="headerlink" title="2.动态代理的装饰器模式搭配"></a>2.动态代理的装饰器模式搭配</h1><p>为什么要这样搭配呢，想必大家在实践过程中使用代理都会遇到的问题–动态代理的扩展性。<br>动态代理是没有办法在源代理类上直接进行拓展的（否则的话全部的接口都会实现拓展的对象），但对于我们来说，并不需要，只是对某些委托类进行操作，这就不太这么方便操作了。所以这时候使用装饰器模式比较好的搭配使用，添加自定义的扩展。<br><br>相对于简单的动态代理，这时候要增加几个新的方法：<br><br>提供动态代理实例的静态工厂类（ProxyFactory）和抽象装饰器（Decorator）<br></p>
+<ul>
+<li>首次我们看抽象主题接口</li>
+</ul>
+<pre><code>public interface AbstractSubject {
+     void request();
+}
+</code></pre><ul>
+<li>真实主题类（委托类/被代理的对象）</li>
+</ul>
+<pre><code>public class RealSubject implements AbstractSubject {
+public void request() {
+    System.out.println(&quot;真实的方法-----RealSubject&apos;s request() ...&quot;);
+}
+}
+</code></pre><ul>
+<li>抽象装饰器类（一定要以自己的父类、父接口为一个属性） </li>
+</ul>
+<pre><code>public class Decorator implements AbstractSubject {
+protected AbstractSubject subject = null;
+
+public Decorator(AbstractSubject subject) {
+    this.subject = subject;
+}
+
+@Override
+public void request() {
+
+}
+}
+</code></pre><ul>
+<li>具体装饰器1（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator01 extends Decorator {
+
+public ConcreteDecorator01(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    System.out.println(&quot;第一层装饰 ... 装饰在原主题之前&quot;);
+    super.subject.request();
+}
+}
+</code></pre><ul>
+<li>具体装饰器2（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator02 extends Decorator {
+
+public ConcreteDecorator02(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    super.subject.request();
+    System.out.println(&quot;第二层装饰 ... 装饰在原主题之后&quot;);
+}
+}
+</code></pre><ul>
+<li>具体装饰器3（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator03 extends Decorator {
+
+public ConcreteDecorator03(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    super.subject.request();
+    System.out.println(&quot;第三层装饰 ... 装饰在原主题之后&quot;);
+}
+}
+</code></pre><ul>
+<li>提供动态代理实例的静态工厂类（管理代理实现）</li>
+</ul>
+<pre><code>public class ProxyFactory {
+/**
+ * @param realSubject ：指定需要代理的真实主题类的实例
+ * @return proxy ：代理的实例
+ */
+public static AbstractSubject getProxy(AbstractSubject realSubject) {
+
+    // 获得被代理类的类加载器，使得JVM能够加载并找到被代理类的内部结构，以及已实现的interface
+    ClassLoader loader = realSubject.getClass().getClassLoader();
+
+    // 获得被代理类已实现的所有接口interface,使得动态代理类的实例
+    Class&lt;?&gt;[] interfaces = realSubject.getClass().getInterfaces();
+
+    // 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
+    InvocationHandler handler = new DynamicProxy(realSubject);
+
+    /*
+     * 使用java.lang.reflect.Proxy类中的静态方法newProxyInstance()获得代理的实例
+     *
+     * loader : 被代理类的类加载器 interfaces ：被代理类已实现的所有接口，而这些是动态代理类要实现的接口列表 handler
+     * ： 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
+     *
+     * return ：返回实现了被代理类所实现的所有接口的Object对象，即动态代理，需要强制转型
+     */
+    AbstractSubject proxy = (AbstractSubject) Proxy.newProxyInstance(
+            loader, interfaces, handler);
+
+    return proxy;
+}
+}
+</code></pre><ul>
+<li>代理类</li>
+</ul>
+<pre><code>public class DynamicProxy implements InvocationHandler {
+
+// 被代理类的实例
+Object obj = null;
+
+// 将被代理者的实例传进动态代理类的构造函数中
+public DynamicProxy(Object obj) {
+    this.obj = obj;
+}
+
+/**
+ * 覆盖InvocationHandler接口中的invoke()方法
+ *
+ * 更重要的是，动态代理模式可以使得我们在不改变原来已有的代码结构 的情况下，对原来的“真实方法”进行扩展、增强其功能，并且可以达到
+ * 控制被代理对象的行为，下面的before、after就是我们可以进行特殊 代码切入的扩展点了。
+ */
+public Object invoke(Object proxy, Method method, Object[] args)
+        throws Throwable {
+    /*
+     * before ：doSomething();
+     */
+    System.out.println(&quot;动态代理为真实主题添加一个方法  ...&quot;);
+    Object result = method.invoke(this.obj, args);
+
+    /*
+     * after : doSomething();
+     */
+    return result;
+}
+}
+</code></pre><ul>
+<li>client</li>
+</ul>
+<pre><code>public class Client {
+public static void main(String[] args) {
+    // 被代理类的实例
+    AbstractSubject realSubject = new RealSubject();
+    // 通过静态工厂获取动态代理的实例
+    AbstractSubject proxy = ProxyFactory.getProxy(realSubject);
+    // 装饰之前打印出该代理实例的名称
+    System.out.println(&quot;装饰前：&quot; + proxy.getClass().getName());
+    // 装饰前使用代理实例进行原始操作
+    //proxy.request();
+    System.out.println(&quot;\n第一次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator01(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+    //proxy.request();
+
+    System.out.println(&quot;\n第二次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator02(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+   // proxy.request();
+
+    System.out.println(&quot;\n第三次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator03(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+    proxy.request();
+}
+}
+</code></pre><ul>
+<li><p>总结 </p>
+<p> 通过上面的代码描述可以在proxy这个类已经是处理好之后的情况，在后面的大段代码都是标准的装饰器代码。<br><br> 运行之后：<br><img src="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86%E8%A3%85%E9%A5%B0.png?attname=&amp;e=1500367034&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:g_IrjFnUOSlGzblI2M1_mVjL4zw" alt=""><br>看好我画圈的地方，下面将 </p>
+<blockquote>
+<p>AbstractSubject proxy = ProxyFactory.getProxy(realSubject);</p>
+</blockquote>
+</li>
+</ul>
+<p>方法去除，变成一个完整的装饰器模式，看看效果：<br><img src="http://oqsn5psbq.bkt.clouddn.com/=%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500367040&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:W9i0FDPrPHKw0eqlUl5Nr1VncqY" alt=""></p>
+<p>可以看到，结果完全相同，只有最初代理的对象不同，一个是经过代理产生的，一个是源接口。<br>对于这样的好处毋庸置疑：代理可以放在其他模块中，对于自定义的功能添加使用装饰器自由组合，对于统一的操作放在代理对象中，这样解耦的形式比较好。</p>
+<h1 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3.结束语"></a>3.结束语</h1><p>其实设计模式之前的搭配有很多，只学单独的设计模式的概念并不是很大，很多注明的SDK都是很多设计模式相互搭配而来，请大家多多思考，下节讲动态代理的实际操作–Android中统一处理防双击/抖动。谢谢</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/16/SharedPreferencesUtils/" rel="next" title="SharedPreferencesUtils存储对象">
+                <i class="fa fa-chevron-left"></i> SharedPreferencesUtils存储对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/18/dongtaidaili1/" rel="prev" title="java 系列（一） 动态代理（上）">
+                java 系列（一） 动态代理（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -472,6 +657,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -492,8 +681,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -553,6 +751,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-动态代理和装饰器模式"><span class="nav-number">1.</span> <span class="nav-text">1.动态代理和装饰器模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-动态代理的装饰器模式搭配"><span class="nav-number">2.</span> <span class="nav-text">2.动态代理的装饰器模式搭配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-结束语"><span class="nav-number">3.</span> <span class="nav-text">3.结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -698,11 +912,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   

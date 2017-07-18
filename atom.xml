@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-16T10:32:21.148Z</updated>
+  <updated>2017-07-18T12:51:08.567Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,337 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java 系列（一） 动态代理（上）</title>
+    <link href="http://yoursite.com/2017/07/18/dongtaidaili1/"/>
+    <id>http://yoursite.com/2017/07/18/dongtaidaili1/</id>
+    <published>2017-07-18T05:17:02.000Z</published>
+    <updated>2017-07-18T12:51:08.567Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>想必大家都很耳熟这个模式，或者说这个思想，但实际在项目中用的并不是很多，这节课程我们来详细描述-动态代理是怎么一回事，和使用的范围，以及一定程度的扩展，在Android中的简单实现。</p>
+</blockquote>
+<h2 id="动态代理的介绍"><a href="#动态代理的介绍" class="headerlink" title="动态代理的介绍"></a>动态代理的介绍</h2><h1 id="1-什么是动态代理"><a href="#1-什么是动态代理" class="headerlink" title="1.什么是动态代理"></a>1.什么是动态代理</h1><ul>
+<li>定义：为其他对象提供一种代理以控制对这个对象的访问<br>请注意这个控制，仅代表在这个对象处理之前或之后做某些操作，并不会对这个对象做什么操作，也不会影响这个事务的运行。<br>其中动态代理只是代理模式的一种，代理模式还包括静态代理等。</li>
+<li>优缺点：可以实现对于委托类的隐藏，可以对于统一的操作节约代码，实现解耦，但jdk中的proxy只能实现对接口的代理，如果想代理其他的方法等，需要用到第三方的sdk.</li>
+<li>使用典范：spring的AOP模式，日志系统，缓存系统等。</li>
+<li><p>例图：<br> 1，代理模式<br> <img src="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86.png?attname=&amp;e=1500350970&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:PE21Q_Kc_DgYMOOERQV91i7FrJI" alt="代理模式"></p>
+<p> 2，动态代理模式<br> <img src="http://oqsn5psbq.bkt.clouddn.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86.png?attname=&amp;e=1500350970&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:-PHNRvWxQMQpOTKebKWu1HUBTho" alt=""></p>
+</li>
+<li><p>我的看法<br>动态代理模式存在的必要：我们在写主业务流程时，经常会遇到一些细枝末节的东西要处理，比如缓存，写日志等，但如果将其直接放在主题代码中，这是对OO的破坏，也会影响整体业务流程的浏览，另一方面会做很多无用功，有人会说：把这种代码抽出来，放在一个基类里面。当然这不失为一种解决方案，但会造成主体代码和枝节代码的耦合加深，会使在模块中依旧添加其他的依赖，而且对于代码移植比较繁琐。<br>所以我们使用动态代理这种思想，降低了代码的耦合程度，也更好的隐藏枝节代码，和保护主体代码。<br>看到这里有人会很疑惑，动态代理怎么和装饰器模式这么类似，我们将会在下节将装饰器模式和动态代理的不同，以及两者的之间的互补。</p>
+</li>
+</ul>
+<h1 id="2-动态代理的实现"><a href="#2-动态代理的实现" class="headerlink" title="2.动态代理的实现"></a>2.动态代理的实现</h1><p>  下面来看一下代码演示（没有使用《Java编程思想》和《设计模式之禅》的代码，详情请参考这两本书）</p>
+<p>  1，接口</p>
+<pre><code>public interface Subject {
+    public void rent();
+    public void hello(String str);
+}
+</code></pre><p>  2，实现类，这个类就是我们的真实对象</p>
+<pre><code>public class RealSubject implements Subject {
+    @Override
+    public void rent() {
+        System.out.println(&quot;I want to rent my house&quot;);
+    }
+
+    @Override
+    public void hello(String str) {
+        System.out.println(&quot;hello: &quot; + str);
+    }
+}
+</code></pre><p>  3，要代理的方法</p>
+<pre><code>public class DynamicProxy implements InvocationHandler {
+//　这个就是我们要代理的真实对象
+private Object subject;
+
+//    构造方法，给我们要代理的真实对象赋初值
+public DynamicProxy(Object subject) {
+    this.subject = subject;
+}
+
+@Override
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    //　　在代理真实对象前我们可以添加一些自己的操作
+    System.out.println(&quot;before rent house&quot;);
+    //   真实的方法
+    System.out.println(&quot;Method:&quot; + method);
+
+    //    当代理对象调用真实对象的方法时，其会自动的跳转到代理对象关联的handler对象的invoke方法来进行调用
+    method.invoke(subject, args);
+
+    //　　在代理真实对象后我们也可以添加一些自己的操作
+    System.out.println(&quot;after rent house&quot;);
+
+    return null;
+}
+}
+</code></pre><p>4，Client方法</p>
+<pre><code>public class Client {
+
+public static void main(String[] args) {
+    //    我们要代理的真实对象
+    Subject realSubject = new RealSubject();
+
+    //    我们要代理哪个真实对象，就将该对象传进去，最后是通过该真实对象来调用其方法的
+    InvocationHandler handler = new DynamicProxy(realSubject);
+
+    /*
+     * 通过Proxy的newProxyInstance方法来创建我们的代理对象，我们来看看其三个参数
+     * 第一个参数 handler.getClass().getClassLoader() ，我们这里使用handler这个类的ClassLoader对象来加载我们的代理对象
+     * 第二个参数realSubject.getClass().getInterfaces()，我们这里为代理对象提供的接口是真实对象所实行的接口，表示我要代理的是该真实对象，这样我就能调用这组接口中的方法了
+     * 第三个参数handler， 我们这里将这个代理对象关联到了上方的 InvocationHandler 这个对象上
+     */
+    Subject subject = (Subject) Proxy.newProxyInstance(handler.getClass().getClassLoader(), realSubject
+            .getClass().getInterfaces(), handler);
+
+    System.out.println(subject.getClass().getName());
+    subject.rent();
+    subject.hello(&quot;world&quot;);
+}
+}
+</code></pre><p>  5,总结</p>
+<p>动态代理的步骤总结:</p><p><br>1,定义一个接口，并实现这个接口的类，就是实现类，或者称为委托类</p><p><br>2，定义一个代理类，实现jdk的InvocationHandler接口（这个接口在java.lang.reflect包里面，想必大家可以猜到内部怎么实现的吧），主要是将运行时的任务和你准备处理的操作进行搭配。</p><p><br>3,生成代理对象，调用Proxy的方法进行调用，使用。</p>
+<p>#3. 结束语</p>
+<p>简单的动态代理的代码就是这么多，下节将装饰器模式和动态代理的搭配，通过简单的代码模拟，大家是不是对动态代理已经有所认识，赶快行动起来吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;想必大家都很耳熟这个模式，或者说这个思想，但实际在项目中用的并不是很多，这节课程我们来详细描述-动态代理是怎么一回事，和使用的范围，以及一定程度的扩展，在Android中的简单实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;动态代理的介
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java 系列（一） 动态代理（中）</title>
+    <link href="http://yoursite.com/2017/07/18/dongtaidaili2/"/>
+    <id>http://yoursite.com/2017/07/18/dongtaidaili2/</id>
+    <published>2017-07-18T05:17:02.000Z</published>
+    <updated>2017-07-18T12:51:08.509Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。</p>
+</blockquote>
+<h1 id="1-动态代理和装饰器模式"><a href="#1-动态代理和装饰器模式" class="headerlink" title="1.动态代理和装饰器模式"></a>1.动态代理和装饰器模式</h1><ul>
+<li><p>1.装饰器模式的介绍：</p>
+<p> 装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。<br><br> 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头来看javaIO流的思维导图，想必会恍然大悟了。<br><br> 例图：<br></p>
+<p> <img src="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500359908&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ" alt=""></p>
+<p> （ps:这个图会和我们下面将要讲的装饰器模式+动态代理的UML图一致，不再重复显示）</p>
+</li>
+<li><p>2.两者区别</p>
+</li>
+</ul>
+<p>两者都可以在保持主业务流程下，对对象进行添加方法，增强这个类的使用。<br><br>   但两者有着一些区别：<br><br>   装饰器模式继承了接口，添加了新类，而代理没有对原代码有任何操作。<br><br>   装饰器中的继承和创建新类，会造成出现大量的包装类，对于代码阅读是有困难的。</p>
+<h1 id="2-动态代理的装饰器模式搭配"><a href="#2-动态代理的装饰器模式搭配" class="headerlink" title="2.动态代理的装饰器模式搭配"></a>2.动态代理的装饰器模式搭配</h1><p>为什么要这样搭配呢，想必大家在实践过程中使用代理都会遇到的问题–动态代理的扩展性。<br>动态代理是没有办法在源代理类上直接进行拓展的（否则的话全部的接口都会实现拓展的对象），但对于我们来说，并不需要，只是对某些委托类进行操作，这就不太这么方便操作了。所以这时候使用装饰器模式比较好的搭配使用，添加自定义的扩展。<br><br>相对于简单的动态代理，这时候要增加几个新的方法：<br><br>提供动态代理实例的静态工厂类（ProxyFactory）和抽象装饰器（Decorator）<br></p>
+<ul>
+<li>首次我们看抽象主题接口</li>
+</ul>
+<pre><code>public interface AbstractSubject {
+     void request();
+}
+</code></pre><ul>
+<li>真实主题类（委托类/被代理的对象）</li>
+</ul>
+<pre><code>public class RealSubject implements AbstractSubject {
+public void request() {
+    System.out.println(&quot;真实的方法-----RealSubject&apos;s request() ...&quot;);
+}
+}
+</code></pre><ul>
+<li>抽象装饰器类（一定要以自己的父类、父接口为一个属性） </li>
+</ul>
+<pre><code>public class Decorator implements AbstractSubject {
+protected AbstractSubject subject = null;
+
+public Decorator(AbstractSubject subject) {
+    this.subject = subject;
+}
+
+@Override
+public void request() {
+
+}
+}
+</code></pre><ul>
+<li>具体装饰器1（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator01 extends Decorator {
+
+public ConcreteDecorator01(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    System.out.println(&quot;第一层装饰 ... 装饰在原主题之前&quot;);
+    super.subject.request();
+}
+}
+</code></pre><ul>
+<li>具体装饰器2（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator02 extends Decorator {
+
+public ConcreteDecorator02(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    super.subject.request();
+    System.out.println(&quot;第二层装饰 ... 装饰在原主题之后&quot;);
+}
+}
+</code></pre><ul>
+<li>具体装饰器3（根据实际情况，我这里只写三个）</li>
+</ul>
+<pre><code>public class ConcreteDecorator03 extends Decorator {
+
+public ConcreteDecorator03(AbstractSubject subject) {
+    super(subject); //调用父类装饰类的构造器
+}
+
+/**
+ * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ */
+public void request() {
+    super.subject.request();
+    System.out.println(&quot;第三层装饰 ... 装饰在原主题之后&quot;);
+}
+}
+</code></pre><ul>
+<li>提供动态代理实例的静态工厂类（管理代理实现）</li>
+</ul>
+<pre><code>public class ProxyFactory {
+/**
+ * @param realSubject ：指定需要代理的真实主题类的实例
+ * @return proxy ：代理的实例
+ */
+public static AbstractSubject getProxy(AbstractSubject realSubject) {
+
+    // 获得被代理类的类加载器，使得JVM能够加载并找到被代理类的内部结构，以及已实现的interface
+    ClassLoader loader = realSubject.getClass().getClassLoader();
+
+    // 获得被代理类已实现的所有接口interface,使得动态代理类的实例
+    Class&lt;?&gt;[] interfaces = realSubject.getClass().getInterfaces();
+
+    // 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
+    InvocationHandler handler = new DynamicProxy(realSubject);
+
+    /*
+     * 使用java.lang.reflect.Proxy类中的静态方法newProxyInstance()获得代理的实例
+     *
+     * loader : 被代理类的类加载器 interfaces ：被代理类已实现的所有接口，而这些是动态代理类要实现的接口列表 handler
+     * ： 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
+     *
+     * return ：返回实现了被代理类所实现的所有接口的Object对象，即动态代理，需要强制转型
+     */
+    AbstractSubject proxy = (AbstractSubject) Proxy.newProxyInstance(
+            loader, interfaces, handler);
+
+    return proxy;
+}
+}
+</code></pre><ul>
+<li>代理类</li>
+</ul>
+<pre><code>public class DynamicProxy implements InvocationHandler {
+
+// 被代理类的实例
+Object obj = null;
+
+// 将被代理者的实例传进动态代理类的构造函数中
+public DynamicProxy(Object obj) {
+    this.obj = obj;
+}
+
+/**
+ * 覆盖InvocationHandler接口中的invoke()方法
+ *
+ * 更重要的是，动态代理模式可以使得我们在不改变原来已有的代码结构 的情况下，对原来的“真实方法”进行扩展、增强其功能，并且可以达到
+ * 控制被代理对象的行为，下面的before、after就是我们可以进行特殊 代码切入的扩展点了。
+ */
+public Object invoke(Object proxy, Method method, Object[] args)
+        throws Throwable {
+    /*
+     * before ：doSomething();
+     */
+    System.out.println(&quot;动态代理为真实主题添加一个方法  ...&quot;);
+    Object result = method.invoke(this.obj, args);
+
+    /*
+     * after : doSomething();
+     */
+    return result;
+}
+}
+</code></pre><ul>
+<li>client</li>
+</ul>
+<pre><code>public class Client {
+public static void main(String[] args) {
+    // 被代理类的实例
+    AbstractSubject realSubject = new RealSubject();
+    // 通过静态工厂获取动态代理的实例
+    AbstractSubject proxy = ProxyFactory.getProxy(realSubject);
+    // 装饰之前打印出该代理实例的名称
+    System.out.println(&quot;装饰前：&quot; + proxy.getClass().getName());
+    // 装饰前使用代理实例进行原始操作
+    //proxy.request();
+    System.out.println(&quot;\n第一次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator01(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+    //proxy.request();
+
+    System.out.println(&quot;\n第二次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator02(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+   // proxy.request();
+
+    System.out.println(&quot;\n第三次装饰之后的效果如下：&quot;);
+    proxy = new ConcreteDecorator03(proxy);
+    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
+    proxy.request();
+}
+}
+</code></pre><ul>
+<li><p>总结 </p>
+<p> 通过上面的代码描述可以在proxy这个类已经是处理好之后的情况，在后面的大段代码都是标准的装饰器代码。<br><br> 运行之后：<br><img src="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86%E8%A3%85%E9%A5%B0.png?attname=&amp;e=1500367034&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:g_IrjFnUOSlGzblI2M1_mVjL4zw" alt=""><br>看好我画圈的地方，下面将 </p>
+<blockquote>
+<p>AbstractSubject proxy = ProxyFactory.getProxy(realSubject);</p>
+</blockquote>
+</li>
+</ul>
+<p>方法去除，变成一个完整的装饰器模式，看看效果：<br><img src="http://oqsn5psbq.bkt.clouddn.com/=%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500367040&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:W9i0FDPrPHKw0eqlUl5Nr1VncqY" alt=""></p>
+<p>可以看到，结果完全相同，只有最初代理的对象不同，一个是经过代理产生的，一个是源接口。<br>对于这样的好处毋庸置疑：代理可以放在其他模块中，对于自定义的功能添加使用装饰器自由组合，对于统一的操作放在代理对象中，这样解耦的形式比较好。</p>
+<h1 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3.结束语"></a>3.结束语</h1><p>其实设计模式之前的搭配有很多，只学单独的设计模式的概念并不是很大，很多注明的SDK都是很多设计模式相互搭配而来，请大家多多思考，下节讲动态代理的实际操作–Android中统一处理防双击/抖动。谢谢</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-动态代理和装饰器模式&quot;&gt;&lt;a 
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>SharedPreferencesUtils存储对象</title>
