@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -95,21 +95,19 @@
 
 
 
-<meta name="description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
-<meta name="keywords" content="java">
+<meta name="description" content="原文地址前几天去看了锤子的发布会，没想到这次还是诚意满满。作为程序员，就关注了在本次发布会出现的两大创意（其实只能算得上微创新）。第一个就是本次要说的big-bang，另一个是One Step。  先简要介绍一下One Step，毕竟本次的主题不是他。在Android中其实已经有了相关的介绍，不知道各位基友注意到没有。早在API11的时候官方推出一个新的API—Drag and Drop。官方链">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java 系列（一） 动态代理（中）">
-<meta property="og:url" content="http://yoursite.com/2017/07/18/dongtaidaili2/index.html">
+<meta property="og:title" content="仿Big-Bang实现">
+<meta property="og:url" content="http://yoursite.com/2016/10/24/bigbang1/index.html">
 <meta property="og:site_name" content="龙逝寒Android博客">
-<meta property="og:description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
-<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500359908&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ">
-<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86%E8%A3%85%E9%A5%B0.png?attname=&e=1500367034&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:g_IrjFnUOSlGzblI2M1_mVjL4zw">
-<meta property="og:image" content="http://oqsn5psbq.bkt.clouddn.com/=%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500367040&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:W9i0FDPrPHKw0eqlUl5Nr1VncqY">
-<meta property="og:updated_time" content="2017-07-18T12:51:08.509Z">
+<meta property="og:description" content="原文地址前几天去看了锤子的发布会，没想到这次还是诚意满满。作为程序员，就关注了在本次发布会出现的两大创意（其实只能算得上微创新）。第一个就是本次要说的big-bang，另一个是One Step。  先简要介绍一下One Step，毕竟本次的主题不是他。在Android中其实已经有了相关的介绍，不知道各位基友注意到没有。早在API11的时候官方推出一个新的API—Drag and Drop。官方链">
+<meta property="og:image" content="http://img.blog.csdn.net/20161025100944293">
+<meta property="og:updated_time" content="2017-07-19T14:34:59.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java 系列（一） 动态代理（中）">
-<meta name="twitter:description" content="从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。  1.动态代理和装饰器模式 1.装饰器模式的介绍：  装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头">
-<meta name="twitter:image" content="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&e=1500359908&token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ">
+<meta name="twitter:title" content="仿Big-Bang实现">
+<meta name="twitter:description" content="原文地址前几天去看了锤子的发布会，没想到这次还是诚意满满。作为程序员，就关注了在本次发布会出现的两大创意（其实只能算得上微创新）。第一个就是本次要说的big-bang，另一个是One Step。  先简要介绍一下One Step，毕竟本次的主题不是他。在Android中其实已经有了相关的介绍，不知道各位基友注意到没有。早在API11的时候官方推出一个新的API—Drag and Drop。官方链">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161025100944293">
 
 
 
@@ -137,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/18/dongtaidaili2/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/24/bigbang1/"/>
 
 
 
 
 
-  <title>java 系列（一） 动态代理（中） | 龙逝寒Android博客</title>
+  <title>仿Big-Bang实现 | 龙逝寒Android博客</title>
   
 
 
@@ -310,7 +308,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/dongtaidaili2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/24/bigbang1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="龙逝寒">
@@ -327,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java 系列（一） 动态代理（中）</h1>
+          <h1 class="post-title" itemprop="name headline">仿Big-Bang实现</h1>
         
 
         <div class="post-meta">
@@ -339,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T01:17:02-04:00">
-                2017-07-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-24T17:57:02+08:00">
+                2016-10-24
               </time>
             
 
@@ -380,205 +378,311 @@
 
       
         <blockquote>
-<p>从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。</p>
+<p><a href="http://blog.csdn.net/u012930328/article/details/52913912" target="_blank" rel="external">原文地址</a><br><br>前几天去看了锤子的发布会，没想到这次还是诚意满满。作为程序员，就关注了在本次发布会出现的两大创意（其实只能算得上微创新）。第一个就是本次要说的big-bang，另一个是One Step。</p>
 </blockquote>
-<h1 id="1-动态代理和装饰器模式"><a href="#1-动态代理和装饰器模式" class="headerlink" title="1.动态代理和装饰器模式"></a>1.动态代理和装饰器模式</h1><ul>
-<li><p>1.装饰器模式的介绍：</p>
-<p> 装饰器模式能够实现保持原有的接口，并为新的接口动态的添加功能。装饰器实现了java编程上的一个准则，多组合，少继承。<br><br> 装饰器的一个典型的例子是：java中的IO流的实现,大家在转过头来看javaIO流的思维导图，想必会恍然大悟了。<br><br> 例图：<br></p>
-<p> <img src="http://oqsn5psbq.bkt.clouddn.com/%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500359908&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:JEwQihnnKKrIwO7F-opjm8QSelQ" alt=""></p>
-<p> （ps:这个图会和我们下面将要讲的装饰器模式+动态代理的UML图一致，不再重复显示）</p>
-</li>
-<li><p>2.两者区别</p>
-</li>
-</ul>
-<p>两者都可以在保持主业务流程下，对对象进行添加方法，增强这个类的使用。<br><br>   但两者有着一些区别：<br><br>   装饰器模式继承了接口，添加了新类，而代理没有对原代码有任何操作。<br><br>   装饰器中的继承和创建新类，会造成出现大量的包装类，对于代码阅读是有困难的。</p>
-<h1 id="2-动态代理的装饰器模式搭配"><a href="#2-动态代理的装饰器模式搭配" class="headerlink" title="2.动态代理的装饰器模式搭配"></a>2.动态代理的装饰器模式搭配</h1><p>为什么要这样搭配呢，想必大家在实践过程中使用代理都会遇到的问题–动态代理的扩展性。<br>动态代理是没有办法在源代理类上直接进行拓展的（否则的话全部的接口都会实现拓展的对象），但对于我们来说，并不需要，只是对某些委托类进行操作，这就不太这么方便操作了。所以这时候使用装饰器模式比较好的搭配使用，添加自定义的扩展。<br><br>相对于简单的动态代理，这时候要增加几个新的方法：<br><br>提供动态代理实例的静态工厂类（ProxyFactory）和抽象装饰器（Decorator）<br></p>
-<ul>
-<li>首次我们看抽象主题接口</li>
-</ul>
-<pre><code>public interface AbstractSubject {
-     void request();
+<p>先简要介绍一下One Step，毕竟本次的主题不是他。在Android中其实已经有了相关的介绍，不知道各位基友注意到没有。早在API11的时候官方推出一个新的API—Drag and Drop。<a href="https://developer.android.com/guide/topics/ui/drag-drop.html" target="_blank" rel="external">官方链接</a>。<br>无法科学上网的童鞋们只能通过下图（截取了整个界面）来看这个功能的实现。<br><a href="http://pan.baidu.com/s/1c155YaG" target="_blank" rel="external">图片下载，图片太大了</a><br>详情请看—链接<a href="https://zhuanlan.zhihu.com/p/23066211" target="_blank" rel="external">大神的解析</a></p>
+<p>下面来进入BigBang的学习过程，通过发布会上简简单单的演示，我们可以看到一共有三步，系统级拦截长触摸事件+系统剪切板+分词技术。这三个技术现在都比较成熟，不要担心。如果想实现系统级的拦截可以使用Xposed技术，用来拦截,在这里不做赘述。<br>现在主要分为两部分讲实现BigBang技术的实现。</p>
+<p> <strong>1. 实现基本功能</strong></p>
+<blockquote>
+<p>本部分主要介绍系统剪切板，中文/英文分词的实现和问题的解决</p>
+</blockquote>
+<p><strong>1，使用系统剪切板</strong><br><br>            首先启动一个服务，在其他软件上使用剪切板时可以监控通知软件有新的内容出现，并在通知栏上进行提示用户操作。<br><br>        ClipServer.java（其他方法暂不赘述）</p>
+<pre><code> @Override
+public int onStartCommand(Intent intent, int flags, int startId) {
+    final ClipboardManager clipboardManager = (ClipboardManager) getSystemService
+            (CLIPBOARD_SERVICE);
+    clipboardManager.addPrimaryClipChangedListener(() -&gt; {
+        if (clipboardManager.hasPrimaryClip()) {
+            if (clipboardManager.getPrimaryClipDescription().hasMimeType(
+                    ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+                ClipData primaryClip = clipboardManager.getPrimaryClip();
+                if (primaryClip != null) {
+                    ClipData.Item item = primaryClip.getItemAt(0);
+                    if (item != null &amp;&amp; !TextUtils.isEmpty(item.getText().toString())) {
+                        startNofi(item.getText().toString());
+                    }
+                }
+            }
+        }
+    });
+    return super.onStartCommand(intent, flags, startId);
 }
-</code></pre><ul>
-<li>真实主题类（委托类/被代理的对象）</li>
-</ul>
-<pre><code>public class RealSubject implements AbstractSubject {
-public void request() {
-    System.out.println(&quot;真实的方法-----RealSubject&apos;s request() ...&quot;);
+ private void startNofi(String s) {
+    manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    Intent resultIntent = new Intent(this, ReceiverClip.class);
+    resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    resultIntent.putExtra(ReceiverClip.EXTRA_TEXT, s);
+    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, resultIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT);
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+    notifyBuilder = new NotificationCompat.Builder(this)
+            .setLargeIcon(bitmap)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(getResources().getText(R.string.nofi_tongzhi))
+            .setContentText(getResources().getText(R.string.nofi_context))
+            .setWhen(System.currentTimeMillis())
+            .setTicker(&quot;Big bang&quot;)
+            .setOngoing(true)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent);
+    manager.notify(121, notifyBuilder.build());
 }
+</code></pre><p>在MainActivity上进行启动服务，在这里童鞋们可以添加一些（XX）的技术，尽量使这个服务线程保活。比如双进程守护（像NDK双进程守护），系统的辅助服务，相互唤醒（全家桶），悬浮窗1px等等（这样的技术在此不做描述，毕竟国内的环境，，，，）。</p>
+<p>MainActivity.java</p>
+<pre><code> private void initData() {
+    Intent intent = new Intent(MainActivity.this, ClipServer.class);
+    startService(intent);
 }
-</code></pre><ul>
-<li>抽象装饰器类（一定要以自己的父类、父接口为一个属性） </li>
-</ul>
-<pre><code>public class Decorator implements AbstractSubject {
-protected AbstractSubject subject = null;
+</code></pre><p>   系统剪切板就是这点内容，下面是是分词技术。<br><br>   <strong>2.中文/英文分词技术</strong><br><br>      通过百度/谷歌查询可知分词是比较成熟的，像Word分词器，IKAnalyzer分词器等等，使用Java实现的分词器（知名的）十多个。<br>      在本文中主要使用的是IKAnalyzer+Lucene（本地）。做过功课的童鞋们大概也看出来分词器需要web端实现或添加大字典。本人猜测锤子的分词是在服务端实现的，毕竟本地实现分词不仅需要大字典还有运算时的高耗，在本地实现运算一段100字左右的段落，会占用大约2s-3s的时间（我的渣渣手机），同时还有IKAnalyzer.cfg.xml，ext_stopword.dic两个文件，作为字典，配置文件。<br>      言归正传，我用的是IKAnalyzer-2012_u3(好像不更新了)，和Lucene的三个包，lucene-analyzers-3.1.0.jar，lucene-core-3.6.0.jar，lucene-highlighter-3.6.0-sources.jar。在Maven仓库里面没有Lucene的三个包（有点老），大家在官网上下，或者在本文最后提供的地址中去爬。<br>      使用jdk1.8的童鞋们在build.gradle中添加</p>
+<pre><code> compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
+</code></pre><p>在解析界面，使用代码：</p>
+<pre><code>String text = getIntent().getStringExtra(EXTRA_TEXT);
+    if (!TextUtils.isEmpty(text)) {
+        List&lt;String&gt; keywordList = new ArrayList&lt;&gt;();
+        try {
+            byte[] bt = text.getBytes();
+            InputStream ip = new ByteArrayInputStream(bt);
+            Reader read = new InputStreamReader(ip);
+            IKSegmenter iks = new IKSegmenter(read, true);//true开启只能分词模式，如果不设置默认为false，也就是细粒度分割
+            Lexeme t;
+            while ((t = iks.next()) != null) {
+                keywordList.add(t.getLexemeText());
+                mLayout.addTextItem(t.getLexemeText());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+</code></pre><p>就是这么短的代码量，是不是很惊喜，如此简单的实现。<br>好了，现在实现界面。<br><br> <strong>3，分词界面</strong><br><br>    主要就是一个流式布局，TouchEvent事件。在触摸一个词时加入StringBuilder中。下面放出一个大神写的仿锤子布局（本人实力不够，，，，）。<br><br>    BigBangLayout.java</p>
+<pre><code> @Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-public Decorator(AbstractSubject subject) {
-    this.subject = subject;
+    int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
+    int contentWidthSize = widthSize - mActionBar.getContentPadding();
+    int heightSize = 0;
+
+    int childCount = getChildCount();
+
+    int measureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+
+    mLines = new ArrayList&lt;&gt;();
+    Line currentLine = null;
+    int currentLineWidth = contentWidthSize;
+    for (int i = 0; i &lt; childCount; i++) {
+
+        View child = getChildAt(i);
+
+        if (mActionBar == child) {
+            continue;
+        }
+
+        child.measure(measureSpec, measureSpec);
+
+        if (currentLineWidth &gt; 0) {
+            currentLineWidth += mItemSpace;
+        }
+        currentLineWidth += child.getMeasuredWidth();
+        if (mLines.size() == 0 || currentLineWidth &gt; contentWidthSize) {
+            heightSize += child.getMeasuredHeight();
+            currentLineWidth = child.getMeasuredWidth();
+            currentLine = new Line(mLines.size());
+            mLines.add(currentLine);
+        }
+        Item item = new Item(currentLine);
+        item.view = child;
+        item.index = i;
+        item.width = child.getMeasuredWidth();
+        item.height = child.getMeasuredHeight();
+        currentLine.addItem(item);
+    }
+
+    Line firstSelectedLine = findFirstSelectedLine();
+    Line lastSelectedLine = findLastSelectedLine();
+    if (firstSelectedLine != null &amp;&amp; lastSelectedLine != null) {
+        int selectedLineHeight = (lastSelectedLine.index - firstSelectedLine.index + 1) * (firstSelectedLine.getHeight() + mLineSpace);
+        mActionBar.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(selectedLineHeight, MeasureSpec.UNSPECIFIED));
+    }
+
+    int size = heightSize + getPaddingTop() + getPaddingBottom() + (mLines.size() - 1) * mLineSpace + mActionBarTopHeight + mActionBarBottomHeight;
+    super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY));
 }
 
 @Override
-public void request() {
+protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    int top;
+    int left;
+    int offsetTop;
 
-}
-}
-</code></pre><ul>
-<li>具体装饰器1（根据实际情况，我这里只写三个）</li>
-</ul>
-<pre><code>public class ConcreteDecorator01 extends Decorator {
+    Line lastSelectedLine = findLastSelectedLine();
+    Line firstSelectedLine = findFirstSelectedLine();
 
-public ConcreteDecorator01(AbstractSubject subject) {
-    super(subject); //调用父类装饰类的构造器
+    for (int i = 0; i &lt; mLines.size(); i++) {
+        Line line = mLines.get(i);
+        List&lt;Item&gt; items = line.getItems();
+        left = getPaddingLeft() + mActionBar.getContentPadding();
+
+        if (firstSelectedLine != null &amp;&amp; firstSelectedLine.index &gt; line.index) {
+            offsetTop = -mActionBarTopHeight;
+        } else if (lastSelectedLine != null &amp;&amp; lastSelectedLine.index &lt; line.index) {
+            offsetTop = mActionBarBottomHeight;
+        } else {
+            offsetTop = 0;
+        }
+
+        for (int j = 0; j &lt; items.size(); j++) {
+            Item item = items.get(j);
+            top = getPaddingTop() + i * (item.height + mLineSpace) + offsetTop + mActionBarTopHeight;
+            View child = item.view;
+            int oldTop = child.getTop();
+            child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+            if (oldTop != top) {
+                int translationY = oldTop - top;
+                child.setTranslationY(translationY);
+                child.animate().translationYBy(-translationY).setDuration(200).start();
+            }
+            left += child.getMeasuredWidth() + mItemSpace;
+        }
+    }
+
+    if (firstSelectedLine != null &amp;&amp; lastSelectedLine != null) {
+        mActionBar.setVisibility(View.VISIBLE);
+        mActionBar.setAlpha(1);
+        int oldTop = mActionBar.getTop();
+        int actionBarTop = firstSelectedLine.index * (firstSelectedLine.getHeight() + mLineSpace) + getPaddingTop();
+        mActionBar.layout(getPaddingLeft(), actionBarTop, getPaddingLeft() + mActionBar.getMeasuredWidth(), actionBarTop + mActionBar.getMeasuredHeight());
+        if (oldTop != actionBarTop) {
+            int translationY = oldTop - actionBarTop;
+            mActionBar.setTranslationY(translationY);
+            mActionBar.animate().translationYBy(-translationY).setDuration(200).start();
+        }
+    } else {
+        if (mActionBar.getVisibility() == View.VISIBLE){
+            mActionBar.animate().alpha(0).setDuration(200).setListener(mActionBarAnimationListener).start();
+        }
+    }
+}
+</code></pre><p>还有上面的几个按钮在BigBangActionBar.java</p>
+<pre><code> private void initSubViews() {
+    Context context = getContext();
+
+    mBorder = ContextCompat.getDrawable(context, R.drawable.bigbang_action_bar_bg);
+    mBorder.setCallback(this);
+
+    mSearch = new ImageView(context);
+    mSearch.setImageResource(R.mipmap.bigbang_action_search);
+    mSearch.setOnClickListener(this);
+    mShare = new ImageView(context);
+    mShare.setImageResource(R.mipmap.bigbang_action_share);
+    mShare.setOnClickListener(this);
+    mCopy = new ImageView(context);
+    mCopy.setImageResource(R.mipmap.bigbang_action_copy);
+    mCopy.setOnClickListener(this);
+
+    addView(mSearch, createLayoutParams());
+    addView(mShare, createLayoutParams());
+    addView(mCopy, createLayoutParams());
+
+    setWillNotDraw(false);
+
+    mActionGap = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics());
+    mContentPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+}
+ @Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    int childCount = getChildCount();
+    int measureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+    for (int i = 0; i &lt; childCount; i++) {
+        View child = getChildAt(i);
+        child.measure(measureSpec, measureSpec);
+    }
+
+    int width = MeasureSpec.getSize(widthMeasureSpec);
+    int height = MeasureSpec.getSize(heightMeasureSpec);
+
+    setMeasuredDimension(width, height + mContentPadding + mSearch.getMeasuredHeight());
+}
+
+@Override
+protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    int width = getMeasuredWidth();
+    int height = getMeasuredHeight();
+
+    layoutSubView(mSearch, mActionGap, 0);
+    layoutSubView(mShare, width - mActionGap * 2 - mShare.getMeasuredWidth() - mCopy.getMeasuredWidth(), 0);
+    layoutSubView(mCopy, width - mActionGap - mCopy.getMeasuredWidth(), 0);
+
+    Rect oldBounds = mBorder.getBounds();
+    Rect newBounds = new Rect(0, mSearch.getMeasuredHeight() / 2, width, height);
+
+    if (!oldBounds.equals(newBounds)) {
+        ObjectAnimator.ofObject(mBorder, &quot;bounds&quot;, new RectEvaluator(), oldBounds, newBounds).setDuration(200).start();
+    }
+}
+</code></pre><p>至此大家可以看看实现。一般来说剪切板需要保存历史记录，下面开始实现数据库。喜欢使用原生数据库的实现，下节可以不用看了，在本文中数据库使用GreenDao实现数据库操作。<br>相信大家肯定接触过，下面只是简单的介绍一下。<br><br> <strong>3. 添加数据库等使用技术</strong><br><br>    在main下面建立java-gen(大家都这样写，其实无所谓)，在build.gradle中设置</p>
+<pre><code> sourceSets{
+    main{
+        java.srcDirs=[&apos;src/main/java&apos;,&apos;src/main/java-gen&apos;]
+    }
+}
+</code></pre><p>还有一个 compile ‘de.greenrobot:greendao:1.3.7’，将greendao的包导进去。<br>接下来开始建立依赖库，在依赖库的build.gradle写：</p>
+<pre><code>apply plugin: &apos;java&apos;
+
+dependencies {
+    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])
+    compile &apos;de.greenrobot:greendao-generator:1.3.1&apos;
+}
+
+sourceCompatibility = &quot;1.8&quot;
+targetCompatibility = &quot;1.8&quot;
+</code></pre><p>在java文件中写</p>
+<pre><code> public static void main(String[] args) throws Exception {
+    // 正如你所见的，你创建了一个用于添加实体（Entity）的模式（Schema）对象。
+    // 两个参数分别代表：数据库版本号与自动生成代码的包路径。
+    Schema schema = new Schema(1, &quot;com.longshihan.sqlite&quot;);
+    //      当然，如果你愿意，你也可以分别指定生成的 Bean 与 DAO 类所在的目录，只要如下所示：
+    //      Schema schema = new Schema(1, &quot;me.itangqi.bean&quot;);
+    //      schema.setDefaultJavaPackageDao(&quot;me.itangqi.dao&quot;);
+
+    // 模式（Schema）同时也拥有两个默认的 flags，分别用来标示 entity 是否是 activie 以及是否使用 keep sections。
+    // schema2.enableActiveEntitiesByDefault();
+    // schema2.enableKeepSectionsByDefault();
+
+    // 一旦你拥有了一个 Schema 对象后，你便可以使用它添加实体（Entities）了。
+    addNote(schema);
+
+    // 最后我们将使用 DAOGenerator 类的 generateAll() 方法自动生成代码，此处你需要根据自己的情况更改输出目录（既之前创建的 java-gen)。
+    // 其实，输出目录的路径可以在 build.gradle 中设置，有兴趣的朋友可以自行搜索，这里就不再详解。
+    new DaoGenerator().generateAll(schema, &quot;D:\\1\\BigBang1\\app\\src\\main\\java-gen&quot;);
 }
 
 /**
- * 覆盖继承树上的接口中的request()方法，用于装饰原对象
+ * @param schema
  */
-public void request() {
-    System.out.println(&quot;第一层装饰 ... 装饰在原主题之前&quot;);
-    super.subject.request();
-}
-}
-</code></pre><ul>
-<li>具体装饰器2（根据实际情况，我这里只写三个）</li>
-</ul>
-<pre><code>public class ConcreteDecorator02 extends Decorator {
+private static void addNote(Schema schema) {
+    // 一个实体（类）就关联到数据库中的一张表，此处表名为「Note」（既类名）
+    Entity note = schema.addEntity(&quot;Clip&quot;);
+    // 你也可以重新给表命名
+    // note.setTableName(&quot;NODE&quot;);
 
-public ConcreteDecorator02(AbstractSubject subject) {
-    super(subject); //调用父类装饰类的构造器
+    // greenDAO 会自动根据实体类的属性值来创建表字段，并赋予默认值
+    // 接下来你便可以设置表中的字段：
+    note.addIdProperty();
+    note.addStringProperty(&quot;text&quot;).notNull();
+    // 与在 Java 中使用驼峰命名法不同，默认数据库中的命名是使用大写和下划线来分割单词的。
+    // For example, a property called “creationDate” will become a database column “CREATION_DATE”.
+    note.addStringProperty(&quot;comment&quot;);
+    note.addDateProperty(&quot;date&quot;);
 }
-
-/**
- * 覆盖继承树上的接口中的request()方法，用于装饰原对象
- */
-public void request() {
-    super.subject.request();
-    System.out.println(&quot;第二层装饰 ... 装饰在原主题之后&quot;);
-}
-}
-</code></pre><ul>
-<li>具体装饰器3（根据实际情况，我这里只写三个）</li>
-</ul>
-<pre><code>public class ConcreteDecorator03 extends Decorator {
-
-public ConcreteDecorator03(AbstractSubject subject) {
-    super(subject); //调用父类装饰类的构造器
-}
-
-/**
- * 覆盖继承树上的接口中的request()方法，用于装饰原对象
- */
-public void request() {
-    super.subject.request();
-    System.out.println(&quot;第三层装饰 ... 装饰在原主题之后&quot;);
-}
-}
-</code></pre><ul>
-<li>提供动态代理实例的静态工厂类（管理代理实现）</li>
-</ul>
-<pre><code>public class ProxyFactory {
-/**
- * @param realSubject ：指定需要代理的真实主题类的实例
- * @return proxy ：代理的实例
- */
-public static AbstractSubject getProxy(AbstractSubject realSubject) {
-
-    // 获得被代理类的类加载器，使得JVM能够加载并找到被代理类的内部结构，以及已实现的interface
-    ClassLoader loader = realSubject.getClass().getClassLoader();
-
-    // 获得被代理类已实现的所有接口interface,使得动态代理类的实例
-    Class&lt;?&gt;[] interfaces = realSubject.getClass().getInterfaces();
-
-    // 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
-    InvocationHandler handler = new DynamicProxy(realSubject);
-
-    /*
-     * 使用java.lang.reflect.Proxy类中的静态方法newProxyInstance()获得代理的实例
-     *
-     * loader : 被代理类的类加载器 interfaces ：被代理类已实现的所有接口，而这些是动态代理类要实现的接口列表 handler
-     * ： 用被代理类的实例创建动态代理类的实例，用于真正调用处理程序
-     *
-     * return ：返回实现了被代理类所实现的所有接口的Object对象，即动态代理，需要强制转型
-     */
-    AbstractSubject proxy = (AbstractSubject) Proxy.newProxyInstance(
-            loader, interfaces, handler);
-
-    return proxy;
-}
-}
-</code></pre><ul>
-<li>代理类</li>
-</ul>
-<pre><code>public class DynamicProxy implements InvocationHandler {
-
-// 被代理类的实例
-Object obj = null;
-
-// 将被代理者的实例传进动态代理类的构造函数中
-public DynamicProxy(Object obj) {
-    this.obj = obj;
-}
-
-/**
- * 覆盖InvocationHandler接口中的invoke()方法
- *
- * 更重要的是，动态代理模式可以使得我们在不改变原来已有的代码结构 的情况下，对原来的“真实方法”进行扩展、增强其功能，并且可以达到
- * 控制被代理对象的行为，下面的before、after就是我们可以进行特殊 代码切入的扩展点了。
- */
-public Object invoke(Object proxy, Method method, Object[] args)
-        throws Throwable {
-    /*
-     * before ：doSomething();
-     */
-    System.out.println(&quot;动态代理为真实主题添加一个方法  ...&quot;);
-    Object result = method.invoke(this.obj, args);
-
-    /*
-     * after : doSomething();
-     */
-    return result;
-}
-}
-</code></pre><ul>
-<li>client</li>
-</ul>
-<pre><code>public class Client {
-public static void main(String[] args) {
-    // 被代理类的实例
-    AbstractSubject realSubject = new RealSubject();
-    // 通过静态工厂获取动态代理的实例
-    AbstractSubject proxy = ProxyFactory.getProxy(realSubject);
-    // 装饰之前打印出该代理实例的名称
-    System.out.println(&quot;装饰前：&quot; + proxy.getClass().getName());
-    // 装饰前使用代理实例进行原始操作
-    //proxy.request();
-    System.out.println(&quot;\n第一次装饰之后的效果如下：&quot;);
-    proxy = new ConcreteDecorator01(proxy);
-    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
-    //proxy.request();
-
-    System.out.println(&quot;\n第二次装饰之后的效果如下：&quot;);
-    proxy = new ConcreteDecorator02(proxy);
-    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
-   // proxy.request();
-
-    System.out.println(&quot;\n第三次装饰之后的效果如下：&quot;);
-    proxy = new ConcreteDecorator03(proxy);
-    System.out.println(&quot;\n名称：&quot; + proxy.getClass().getName());
-    proxy.request();
-}
-}
-</code></pre><ul>
-<li><p>总结 </p>
-<p> 通过上面的代码描述可以在proxy这个类已经是处理好之后的情况，在后面的大段代码都是标准的装饰器代码。<br><br> 运行之后：<br><img src="http://oqsn5psbq.bkt.clouddn.com/%E4%BB%A3%E7%90%86%E8%A3%85%E9%A5%B0.png?attname=&amp;e=1500367034&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:g_IrjFnUOSlGzblI2M1_mVjL4zw" alt=""><br>看好我画圈的地方，下面将 </p>
-<blockquote>
-<p>AbstractSubject proxy = ProxyFactory.getProxy(realSubject);</p>
-</blockquote>
-</li>
-</ul>
-<p>方法去除，变成一个完整的装饰器模式，看看效果：<br><img src="http://oqsn5psbq.bkt.clouddn.com/=%E8%A3%85%E9%A5%B0%E5%99%A8.png?attname=&amp;e=1500367040&amp;token=4c_iy_FSofVZ5RZGp4Zc590p4SyhlYTmvUW9e6Rr:W9i0FDPrPHKw0eqlUl5Nr1VncqY" alt=""></p>
-<p>可以看到，结果完全相同，只有最初代理的对象不同，一个是经过代理产生的，一个是源接口。<br>对于这样的好处毋庸置疑：代理可以放在其他模块中，对于自定义的功能添加使用装饰器自由组合，对于统一的操作放在代理对象中，这样解耦的形式比较好。</p>
-<h1 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3.结束语"></a>3.结束语</h1><p>其实设计模式之前的搭配有很多，只学单独的设计模式的概念并不是很大，很多注明的SDK都是很多设计模式相互搭配而来，请大家多多思考，下节讲动态代理的实际操作–Android中统一处理防双击/抖动。谢谢</p>
+</code></pre><p>这个全凭自己的需求。建立表等，这种方法比较简单，但适合扩展，或者使用注解的方式生成。<br>运行或在java-gen中生成表名的类Clip，ClipDao，DaoMaster和DaoSession这三个。<br>新建一个DaoManager,来管理ClipDao。或者在Application 中实现也可。<br>所以在服务中就可以添加信息。</p>
+<pre><code>String comment = primaryClip.getDescription().toString();
+                       Clip note = new Clip(null, item.getText().toString(), comment, new Date());
+                       App.getInstance().App_session().getClipDao().insert(note);
+</code></pre><p>在MainActivity 可以使用RecyclerView 列表。将数据库中所有数据取出，显示在界面中。</p>
+<p>效果图：<br>         <img src="http://img.blog.csdn.net/20161025100944293" alt="这里写图片描述"></p>
+<p>以上这些就是全部内容，附上我的github地址：<a href="https://github.com/longshihan1/Big_Bang" target="_blank" rel="external">链接</a></p>
 
       
     </div>
@@ -608,7 +712,7 @@ public static void main(String[] args) {
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -621,8 +725,8 @@ public static void main(String[] args) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/16/SharedPreferencesUtils/" rel="next" title="SharedPreferencesUtils存储对象">
-                <i class="fa fa-chevron-left"></i> SharedPreferencesUtils存储对象
+              <a href="/2016/07/27/constranintlayout/" rel="next" title="Android新布局-ConstraintLayout详解">
+                <i class="fa fa-chevron-left"></i> Android新布局-ConstraintLayout详解
               </a>
             
           </div>
@@ -631,8 +735,8 @@ public static void main(String[] args) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/18/dongtaidaili1/" rel="prev" title="java 系列（一） 动态代理（上）">
-                java 系列（一） 动态代理（上） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/16/eventBus/" rel="prev" title="EventBus翻译">
+                EventBus翻译 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -681,17 +785,8 @@ public static void main(String[] args) {
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -751,22 +846,6 @@ public static void main(String[] args) {
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-动态代理和装饰器模式"><span class="nav-number">1.</span> <span class="nav-text">1.动态代理和装饰器模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-动态代理的装饰器模式搭配"><span class="nav-number">2.</span> <span class="nav-text">2.动态代理的装饰器模式搭配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-结束语"><span class="nav-number">3.</span> <span class="nav-text">3.结束语</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
