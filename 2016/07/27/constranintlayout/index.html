@@ -95,17 +95,56 @@
 
 
 
-<meta name="description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
+<meta name="description" content="原文地址谷歌在2016年的IO大会上推出的一种新的布局方式—-ConstraintLayout，这局是一种约束型的布局方式。在设置和介绍上类似IOS的自动布局。  先放上Google的官方解析地址：点击链接 ，虽然这个地址我从来没进去过，现在另外附上一份这个官方Demo的Github地址，git： https://github.com/googlecodelabs/constraint-layo">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EventBus翻译">
-<meta property="og:url" content="http://yoursite.com/2017/07/16/eventBus/index.html">
+<meta property="og:title" content="Android新布局-ConstraintLayout详解">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/constranintlayout/index.html">
 <meta property="og:site_name" content="龙逝寒Android博客">
-<meta property="og:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
-<meta property="og:updated_time" content="2017-07-16T10:31:49.708Z">
+<meta property="og:description" content="原文地址谷歌在2016年的IO大会上推出的一种新的布局方式—-ConstraintLayout，这局是一种约束型的布局方式。在设置和介绍上类似IOS的自动布局。  先放上Google的官方解析地址：点击链接 ，虽然这个地址我从来没进去过，现在另外附上一份这个官方Demo的Github地址，git： https://github.com/googlecodelabs/constraint-layo">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727160636698">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727160912420">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727163601160">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727165148207">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727170423197">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727173423772">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727181918120">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727180829069">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727182933532">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727183558035">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727184053441">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727184349382">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727185621243">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727185952263">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727190109359">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727191059768">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727191702396">
+<meta property="og:image" content="http://img.blog.csdn.net/20160727191400658">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728115622758">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728115110787">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728132014603">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728133013165">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728133351934">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728133614532">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728133907163">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728134034835">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728134151852">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728134400353">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728134921152">
+<meta property="og:image" content="http://img.blog.csdn.net/20160728135403180">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729104939688">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729105916226">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729123854137">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729130758739">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729132501623">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729132727105">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729132825965">
+<meta property="og:image" content="http://img.blog.csdn.net/20160729133934018">
+<meta property="og:updated_time" content="2017-07-19T14:10:22.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EventBus翻译">
-<meta name="twitter:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
+<meta name="twitter:title" content="Android新布局-ConstraintLayout详解">
+<meta name="twitter:description" content="原文地址谷歌在2016年的IO大会上推出的一种新的布局方式—-ConstraintLayout，这局是一种约束型的布局方式。在设置和介绍上类似IOS的自动布局。  先放上Google的官方解析地址：点击链接 ，虽然这个地址我从来没进去过，现在另外附上一份这个官方Demo的Github地址，git： https://github.com/googlecodelabs/constraint-layo">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160727160636698">
 
 
 
@@ -133,13 +172,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/16/eventBus/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/27/constranintlayout/"/>
 
 
 
 
 
-  <title>EventBus翻译 | 龙逝寒Android博客</title>
+  <title>Android新布局-ConstraintLayout详解 | 龙逝寒Android博客</title>
   
 
 
@@ -306,7 +345,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/eventBus/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/27/constranintlayout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="龙逝寒">
@@ -323,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EventBus翻译</h1>
+          <h1 class="post-title" itemprop="name headline">Android新布局-ConstraintLayout详解</h1>
         
 
         <div class="post-meta">
@@ -335,8 +374,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T01:42:58-04:00">
-                2017-07-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-27T19:18:02+08:00">
+                2016-07-27
               </time>
             
 
@@ -375,52 +414,35 @@
       
 
       
-        <p>这篇文章是RxBus的权威文章的翻译,<a href="http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/" target="_blank" rel="external">原文</a>，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。<br>这篇文章有三个部分：</p>
-<ul>
-<li>1.事件总线快速入门</li>
-<li>2.用RxJava实现事件总线</li>
-<li>3.这种方法的离别思念</li>
-</ul>
-<p>“RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。</p>
-<h2 id="第1部分：什么是事件总线？"><a href="#第1部分：什么是事件总线？" class="headerlink" title="第1部分：什么是事件总线？"></a>第1部分：什么是事件总线？</h2><p>让我们来谈谈两个似乎相似的概念：观察者模式和发布 - 订阅模式。<br>观察者模式<br>这是一个发展模式，借助此，你的类或主对象（被称为可观察者）利用相关信息（事件）通知其他感兴趣的类或对象（称为观察者）。<br>发布 - 订阅模式<br>发布 - 订阅模式的目标和观察者模式的目标是完全一样的，即你想要一些其他的类来了解正在发生的某些事件。<br>尽管如此，观察者模式和发布 - 订阅模式之间存在一个重要的语义差别：发布 - 订阅模式的重点是外界“广播”的消息。观察者并不关注事件传给谁，而只关注事件是否已经传出。换句话说，观察者（发布者）并不关注谁是观察员（订阅者）。<br>为什么匿名？<br>它允许这个东西叫做“脱钩”，这是计算机编程具有良好的口碑。在设计中，你想尽可能的保持低耦合。<br>通常情况下，你会期望发布者对每个它需要通知的用户有直接的了解，所以当事件或消息已准备就绪时，它可以去通知他们每个人。但随着事件的总线的出现，发布者被解除该任务，并且这种独立性有所帮助，因为发布者和订阅者不必有建立两者之间相关性的逻辑代码。<br>换句话说“自觉低耦论”是你的代码在书写时就应该所思考的，这是程序员应该有的水平。<br>如何匿名？<br>在发布 - 订阅模式中一个很自然的问题是：你如何真正地实现发布者和订阅者之间的匿名？一个简单的方法是得到一个中间人，让那个中间人负责所有的通信。而事件总线就是这样的一个中间人。<br>事件总线就是这么简单。<br>常用于Android的使用的两个事件总线库是otto和EventBus。网上有大量的帖子解释如何在你的手机应用程序中实现它们。</p>
-<h2 id="第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"><a href="#第2部分：用总线RxJava实现事件（？？是“在”还是“用”）" class="headerlink" title="第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"></a>第2部分：用总线RxJava实现事件（？？是“在”还是“用”）</h2><p>我已经将使用Android上RxJava的显示世界的例子粘贴在这个GitHub库上，所以我会坚持展示其完整的实现方式。下面是执行的部分代码：</p>
-<pre><code>// this is the middleman object
-public class RxBus {
-
-private final Subject&lt;Object, Object&gt; _bus = new SerializedSubject&lt;&gt;(PublishSubject.create());
-  public void send(Object o) {
-        _bus.onNext(o);
-  }
-
-  public Observable&lt;Object&gt; toObserverable() {
-    return _bus;
-  }
-}
-</code></pre><p>你现在有一个事件总线可以使用了。<br>这是你如何将事件发布到总线：</p>
-<pre><code>@OnClick(R.id.btn_demo_rxbus_tap)
-public void onTapButtonClicked() {
-
-_rxBus.send(new TapEvent());
-}
-</code></pre><p>这是你如何倾听来自其他片段/服务等。</p>
-<pre><code>_rxBus.toObserverable()
-.subscribe(new Action1&lt;Object&gt;() {
-  @Override
-  public void call(Object event) {
-
-    if(event instanceof TapEvent) {
-      _showTapText();
-
-    }else if(event instanceof SomeOtherEvent) {
-      _doSomethingElse();
-    }
-  }
-});
-</code></pre><p>在这个例子中，我们后从顶部片段（绿色部分）的事件，并从底部片段（蓝色部分）中（通过总线）收听。<br>在下面这个例子中，我们从顶部片段（绿色方）发布事件，并从底部片段（蓝色部分）收听（通过事件总线）。</p>
-<h2 id="第3部分-离别的思念"><a href="#第3部分-离别的思念" class="headerlink" title="第3部分 - 离别的思念"></a>第3部分 - 离别的思念</h2><p>死亡事件</p>
-<p>在一些情况下，知道是否有观察者监听当前总线是非常有用的。比如，如果你使用事件总线来处理你的GCM推送通知），如果应用程序是在前台 ，此时你不希望发送推送通知，这时，监听“死亡事件”是非常重要的。<br>例如，在不久前发布的婚礼派对，我们增加了“信息”到我们的应用程序。如果用户的应用程序开启（因而具有至少一个或更多的听众到总线），我们不会发送推送通知，但如果他们的应用程序在后台，那么我们发送推送通知，让他们知道聊天信息。当一个事件被发布到事件总线后，如果没有用户在听，会返回一个死亡事件。如果我们得到一个死亡事件，推送通知的将被发送出去。<br>你将怎样利用RxBus来实现呢？</p>
-<p>事实上，这很容易。受试者有一个有用的方法hasObservers，这将准确的告诉我们实现方式。这被添加RxJava的1.x release 中，所以你必须要安装RxAndroid的最新版本才能看到这种方法（0.23.0）。<br>如果你只是想在Andr​​oid应用程序中使用事件总线，你可能最好使用otto（强烈推荐）或EventBus库 。Otto有一个由注解推动的干净的API，可能更为简单易用。</p>
-<p>虽然这篇文章写得很好，翻译的不好，以下的博客将会介绍EventBus的一般使用和RXJava及RxBus的使用。<br><a href="http://blog.csdn.net/u012930328/article/details/51993346" target="_blank" rel="external">Csdn原文</a></p>
+        <blockquote>
+<p><a href="http://blog.csdn.net/u012930328/article/details/52048531" target="_blank" rel="external">原文地址</a><br><br>谷歌在2016年的IO大会上推出的一种新的布局方式—-ConstraintLayout，这局是一种约束型的布局方式。在设置和介绍上类似IOS的自动布局。</p>
+</blockquote>
+<p>先放上Google的官方解析地址：<a href="https://codelabs.developers.google.com/codelabs/constraint-layout/index.html%20%E5%8E%9F%E6%96%87" target="_blank" rel="external">点击链接</a> ，虽然这个地址我从来没进去过，现在另外附上一份这个官方Demo的Github地址，git： <a href="https://github.com/googlecodelabs/constraint-layout.git" target="_blank" rel="external">https://github.com/googlecodelabs/constraint-layout.git</a><br>如果在Android studio中不会使用github，还是去找找相关资料了，毕竟这部分技能应该算的上是程序员必备了。<br>那么，从下面开始详细介绍ConstraintLayout这个布局的使用。</p>
+<h2 id="1-准备"><a href="#1-准备" class="headerlink" title="1.准备"></a>1.准备</h2><h2 id="第一步，工欲善其事"><a href="#第一步，工欲善其事" class="headerlink" title="第一步，工欲善其事"></a>第一步，工欲善其事</h2><p>首先先装上Android studio的新版，不要求是最新版，但一定是要超过2.2的版本，截止本文结束前，当前版本是2.2preview6。如果打算升级，但现在是2.1.2等稳定版，则选择更新，<br><img src="http://img.blog.csdn.net/20160727160636698" alt="这里写图片描述"><br>选择Update dialog of your IDE settings.<br><img src="http://img.blog.csdn.net/20160727160912420" alt="这里写图片描述"><br>在这里选择DEV版本。<br>虽然肯定不会升级成功，下面直接附上下载地址（PS：官方网址，需要翻墙），<a href="https://dl.google.com/dl/android/studio/ide-zips/2.2.0.0/android-studio-ide-145.2878421-windows.zip" target="_blank" rel="external">官方下载地址</a>，如果由于种种原因无法翻墙的基友们请看此处，<a href="http://pan.baidu.com/s/1jIGuAkY%20%E7%99%BE%E5%BA%A6%E4%BA%91%E4%B8%8B%E8%BD%BD" target="_blank" rel="external">百度云下载</a>。</p>
+<h2 id="第二步，必先利其器"><a href="#第二步，必先利其器" class="headerlink" title="第二步，必先利其器"></a>第二步，必先利其器</h2><p> 理所当前，使用新的布局方式首先应该导包，ConstraintLayout所在的文件是android.support.constraint.ConstraintLayout，而这个文件在（箭头所指）<br> <img src="http://img.blog.csdn.net/20160727163601160" alt="这里写图片描述"><br> 使用Library Dependency可以直接导入。不明白Maven，Gradle等配置的童鞋，建议去找一些资料看，毕竟这在以后的开发中还是挺重要的。<br> 到了这一步终于可以使用ConstraintLayout这种布局方式了。<br> 在实际操作前先说一下他的性质。<br> 先看ConstraintLayout作为一个ViewGroup的子类，而他并没有没有重载onDraw的方法，他的onLayout（）方法也非常简单，<br> <img src="http://img.blog.csdn.net/20160727165148207" alt="这里写图片描述"><br> 可以看出所以源码中，他内部的子view都是以相对关系存在的，所以只要计算出子view的坐标，就能推算出其他childview该放在布局哪个位置。所以在他的layout的过程也十分简单。<br> 对于他的OnMeasure（）方法，有兴趣的同学可以去看看。另外附上一张RelativeLayout的布局，同样继承于ViewGroup，在他的onLayout（）方法中，见下图：<br> <img src="http://img.blog.csdn.net/20160727170423197" alt="这里写图片描述"><br>可以差不多的看出ConstraintLayout与RelativeLayout对于子控件的排列方式差不多，可以将ConstraintLayout理解为RelativeLayout的升级版（我也不知道这个名称是否得当，欢迎斧正）。<br>可以将ConstraintLayout当做RelativaLayout的布局使用，以及对于子控件的摆放，各位童鞋都有一些印象了吧。<br>、</p>
+<h2 id="2-约束性关系"><a href="#2-约束性关系" class="headerlink" title="2.约束性关系"></a>2.约束性关系</h2><p>在这个布局中，最为关键重要的就是约束性关系这个概念。<br>我的表达能力不是很好，童鞋们理解就好，不理解的话请参考关系数据库完整性约束（大概意思）。<br>约束性关系帮助你保持子控件与子控件对齐或者存在相互的关系. 你可以使用锚点来约定子控件之间存在何种对齐方式。如下图的ButtonA与ButtonB。我们从ButtonA的锚点指向ButtonB，并约束了96dp的间距，则此时移动ButtonB则会与ButtonA保持96dp的距离，而且在移动时的ButtonA也会移动。而操作ButtonA则是很随意，这就是约束性的关系，ButtonA约束了ButtonB的行为。<br><img src="http://img.blog.csdn.net/20160727173423772" alt="这里写图片描述"><br>下图是动态操作，表述上文所述的一些行为。<br><img src="http://img.blog.csdn.net/20160727181918120" alt="这里写图片描述"></p>
+<p>下面介绍一下完整的整体的各个含义：<br><img src="http://img.blog.csdn.net/20160727180829069" alt="这里写图片描述"><br>其中四个角的位置可以将控件缩放的操作点，而在四个边上的圆圈是锚点，（PS：锚点是对应的，上下的锚点只能和上下行的锚点链接，不能和左右的锚点链接），中间的椭圆形式句柄（？），这个的作用是将水平方向的控件内部的字体水平对齐。<br>下图详见操作（有一些操作现在没有讲到，比如自动对齐，这个将会在下面讲）：<br><img src="http://img.blog.csdn.net/20160727182933532" alt="这里写图片描述"></p>
+<h2 id="3-正文"><a href="#3-正文" class="headerlink" title="3.正文"></a>3.正文</h2><p>上面的内容只是ConstraintLayout布局的一些基础知识点，现在我们来正式的看ConstraintLayout的使用。</p>
+<p>我们先把一张图片附在布局中，成像效果如下：<br><img src="http://img.blog.csdn.net/20160727183558035" alt="这里写图片描述"><br>一些初学者会以为右侧的波浪线是图片的黑白平衡，通道，色差之类的，但很抱歉，什么也不是，是Android studio的布局中加载图片的一种显示方式。就像Button控件中有一个句柄一样，图片并没有这个东西。<br>现在我们把眼光移向右上角，会发现出现了一个2字，<img src="http://img.blog.csdn.net/20160727184053441" alt="这里写图片描述">，打开这个2（这个是错误的个数）会发现里面报了若干个（2个）错误（警告），下面来给大家讲解一下这些都是什么含义。<br><img src="http://img.blog.csdn.net/20160727184349382" alt="这里写图片描述"><br>其中第一个是：此子控件缺少约束，否则按左上角（0,0）的位置进行判断子控件的位置，这个错误在Relativelayout布局非常常见，可以不必理会。<br>在这里比较关键的是第二个警告，此控件缺少contentDescription这个节点，而这个节点同样也是新增的内容，是Android新版新增添的功能-无障碍阅读的一种实现。<br>对于Android新增的无障碍阅读功能在系统设置-无障碍里面（由于国产ROM的百花齐放，这个功能自己摸索去），这个功能的主要作用是给一些视力障碍的群体正常的使用Android系统，在触摸某些设置的控件时会发出提示音（使用Google提供的Talk软件）。而这个的操作就是依靠contentDescription这个新属性。添加地点在：<br><img src="http://img.blog.csdn.net/20160727185621243" alt="这里写图片描述"><br>点开之后是选择value，在@string/XXX下面，启动无障碍模式，会播报在此处选择的文字。<br>现在又出现一个新的面板-Properties，是对新功能的补充，如果大家还是怀念原来的样式，则打开方式是：右上角的<img src="http://img.blog.csdn.net/20160727185952263" alt="这里写图片描述"> 左右箭头的符号，顿时就有爱了，还是原来的配方，还是原来的味道。</p>
+<p><img src="http://img.blog.csdn.net/20160727190109359" alt="这里写图片描述"></p>
+<p>好了，扯了这么多闲话，现在正是创建约束性的操作，在通过上面的学习，相信大家对这个约束性的关系和创建约束肯定很感兴趣。</p>
+<hr>
+<p> <strong>1. 手工创建约束性的操作</strong><br> 容我先创建两个可亲可爱的按钮（Button），点击A Button右侧的圆圈，右侧的圆圈会出现类似呼吸灯的状态，点住按钮会出现一个箭头，将箭头想右引导，如果成功A Button会移动到B Button的旁边，而且A Button的呼吸灯变成红色（？原谅我没看出来）。到这步就手工创建好了两者的约束，可以自由操作了。<br> 具体操作如下：<br> <img src="http://img.blog.csdn.net/20160727191059768" alt="这里写图片描述"> </p>
+<p> 这是两个控件中的手工创建约束，下面是单个控件与上层布局的约束。<br>这种方式比较好的地方在于可以与左右上下限定所谓的位置，类型LinearLayout的百分比的方式，<br>在代码中的体现是： <img src="http://img.blog.csdn.net/20160727191702396" alt="这里写图片描述"><br>比较好的融合了RelativeLayout和LinearLayout的优点。（对于百分比布局，将会在以后的文章中有详述）</p>
+<p> <img src="http://img.blog.csdn.net/20160727191400658" alt="这里写图片描述"></p>
+<p> 下面来说一下两个控件之间的基准约束条件。<br>将鼠标放置到Button A句柄处，当句柄开始变色（？）时用鼠标引导句柄，此时会从句柄处引申一条连接线，将此连接线连接到Button B 的句柄处，会发现Button A会移动到与Button B平齐（文字）的地方。（请注意右上角的警告数字，按照个人需求设置）。<br>在代码中的体现是在<img src="http://img.blog.csdn.net/20160728115622758" alt="这里写图片描述"><br>下图是如何设置的动态图<br> <img src="http://img.blog.csdn.net/20160728115110787" alt="这里写图片描述"></p>
+<p>好了，个人的设置大约就是这样，下面开始介绍Properties面板的若干参数的含义。</p>
+<p><img src="http://img.blog.csdn.net/20160728132014603" alt="这里写图片描述"><br>这个ImageView与上层布局的约束的状态。<br>想必各位看官们已经注意到了图中的16,50,39等数字，下面来给大家讲解一下各个数字的用处。16是当ImageView与上层布局出现约束关系时，四周与上层布局的间隔，也就是margin属性。用法一致，并没有发生改变。而50,39指的是50%和39%，相信大家看完下面的演示就会一目了然。<br><img src="http://img.blog.csdn.net/20160728133013165" alt="这里写图片描述"><br>移动这个百分比比率会影响控件在布局中的位置（演示的有点小卡），这些百分比率就是在布局中的比率的显示。<br>在这张图中，还有一些代表意义。<br>1.在上图中有<img src="http://img.blog.csdn.net/20160728133351934" alt="这里写图片描述">，wrap_content，这个的含义，在新式布局中，<br>对应的是<img src="http://img.blog.csdn.net/20160728133614532" alt="这里写图片描述"><br>对于wrap_content,在此就不做赘述，不知道或不明白的去面壁吧。<br>2.<img src="http://img.blog.csdn.net/20160728133907163" alt="这里写图片描述">，Fixed，对于这种样式，在布局中的代表含义是实际的距离，也就是我们给这个控件赋予的尺寸（指定的尺寸）。<br><img src="http://img.blog.csdn.net/20160728134034835" alt="这里写图片描述"><br>3.<img src="http://img.blog.csdn.net/20160728134151852" alt="这里写图片描述">，AnySize，对于这种样式，让子控件占用尽可能大的所有可用空间以去适应上层布局.<br><img src="http://img.blog.csdn.net/20160728134400353" alt="这里写图片描述"><br>看到在代码中的释义是不是很熟悉，又见0dp。</p>
+<hr>
+<p> <strong>2. 自动创建约束</strong><br> 下面来看布局上面面板的内容，有经验的同学可以很快发现这个面板和以往的有所不同。<br> <img src="http://img.blog.csdn.net/20160728134921152" alt="这里写图片描述"><br>多了下面这一排的图标，这次我们会仔细讲解一下这些图标的作用。<br>现在我们将按照逻辑来讲一下各个图标。<br>1.<img src="http://img.blog.csdn.net/20160728135403180" alt="这里写图片描述"><br>这个图标是左起第二个。作用是系统自动预测人类预期的行为而创建的约束—-简称自动创建约束（官方怎么称呼的我也不清楚）。<br>下面展示一下自动创建的流程。<br><img src="http://img.blog.csdn.net/20160729104939688" alt="这里写图片描述"><br>开启磁铁符号，将控件放置在布局中，可以清晰的看到约束的关系在自动的创建。<br>在新式布局中还有一种自动创建约束的按钮，左起第四个，<img src="http://img.blog.csdn.net/20160729105916226" alt="这里写图片描述">，点击这个按钮系统会提示控件与控件，控件与布局之间的可能存在的约束关系。<br>详情见下面的动图：<br><img src="http://img.blog.csdn.net/20160729123854137" alt="这里写图片描述"></p>
+<p>这种自动约束的好处是免除自己去创建约束，但不好的地方在于约束太多，可能有很多约束不需要，而我们怎么删除这些约束呢？<br>下面我们来看第三个按钮，<img src="http://img.blog.csdn.net/20160729130758739" alt="这里写图片描述">，使用这个按钮就可以将所有的约束去除。如果不打算去除所有约束，而是不想将其显示出来，则使用第一个按钮，<img src="http://img.blog.csdn.net/20160729132501623" alt="这里写图片描述">，则可以将所有的约束关系显示/隐藏。（不贴图了，感兴趣的小伙伴们可以自己试试）<br>对于下面几个按钮，大家可以试试，是对控件进行操作。<br><img src="http://img.blog.csdn.net/20160729132727105" alt="这里写图片描述"></p>
+<p>比如：<img src="http://img.blog.csdn.net/20160729132825965" alt="这里写图片描述"><br>是将控件的大小放置为可以容纳上层布局的最大的空间。</p>
+<hr>
+<hr>
+<p>ConstraintLayout布局大约就是这些功能，现在看一下用这个布局做的一个简单的例子（丑，希望不要因为她丑而放弃他）。</p>
+<p><img src="http://img.blog.csdn.net/20160729133934018" alt="这里写图片描述"></p>
+<hr>
+<p>在这里感谢！<a href="http://blog.csdn.net/jdsjlzx/article/details/51460581" target="_blank" rel="external">一叶飘舟</a> 大神博客的帮助，带我走进ConstraintLayout布局的大门。感谢！</p>
 
       
     </div>
@@ -463,18 +485,14 @@ _rxBus.send(new TapEvent());
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/constranintlayout/" rel="next" title="Android新布局-ConstraintLayout详解">
-                <i class="fa fa-chevron-left"></i> Android新布局-ConstraintLayout详解
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/16/SharedPreferencesUtils/" rel="prev" title="SharedPreferencesUtils存储对象">
-                SharedPreferencesUtils存储对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/16/eventBus/" rel="prev" title="EventBus翻译">
+                EventBus翻译 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -603,7 +621,7 @@ _rxBus.send(new TapEvent());
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1部分：什么是事件总线？"><span class="nav-number">1.</span> <span class="nav-text">第1部分：什么是事件总线？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"><span class="nav-number">2.</span> <span class="nav-text">第2部分：用总线RxJava实现事件（？？是“在”还是“用”）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3部分-离别的思念"><span class="nav-number">3.</span> <span class="nav-text">第3部分 - 离别的思念</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备"><span class="nav-number">1.</span> <span class="nav-text">1.准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步，工欲善其事"><span class="nav-number">2.</span> <span class="nav-text">第一步，工欲善其事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步，必先利其器"><span class="nav-number">3.</span> <span class="nav-text">第二步，必先利其器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-约束性关系"><span class="nav-number">4.</span> <span class="nav-text">2.约束性关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-正文"><span class="nav-number">5.</span> <span class="nav-text">3.正文</span></a></li></ol></div>
             
 
           </div>
