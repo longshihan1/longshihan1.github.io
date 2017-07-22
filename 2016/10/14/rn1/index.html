@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -95,17 +95,33 @@
 
 
 
-<meta name="description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
-<meta name="keywords" content="android">
+<meta name="description" content="2016.10-11.14是我学习（业余时间）RN和微信小程序一个月了，学了一些控件和事件。现在在这里做一下整理和总结。  一、React Native的实现和相关问题的解决 React Native的安装   React Native 是FaceBook去年推出的移动端通用代码的一套解决方案。总得来说，在目前为止是比较完善的。但官方的一些Demo是向IOS开发的，Android平台运行时比较麻">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EventBus翻译">
-<meta property="og:url" content="http://yoursite.com/2017/07/16/eventBus/index.html">
+<meta property="og:title" content="关于学习RN和微信小程序一个月随感">
+<meta property="og:url" content="http://yoursite.com/2016/10/14/rn1/index.html">
 <meta property="og:site_name" content="龙逝寒Android博客">
-<meta property="og:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
-<meta property="og:updated_time" content="2017-07-16T10:31:49.708Z">
+<meta property="og:description" content="2016.10-11.14是我学习（业余时间）RN和微信小程序一个月了，学了一些控件和事件。现在在这里做一下整理和总结。  一、React Native的实现和相关问题的解决 React Native的安装   React Native 是FaceBook去年推出的移动端通用代码的一套解决方案。总得来说，在目前为止是比较完善的。但官方的一些Demo是向IOS开发的，Android平台运行时比较麻">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114161439853">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114171336635">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114171533857">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114171845393">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114172029857">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114172410993">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114181756164">
+<meta property="og:image" content="http://img.blog.csdn.net/20161114175456702">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115111715705">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115111824111">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115111802119">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115111956971">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115112151422">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115130209008">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115132706853">
+<meta property="og:updated_time" content="2017-07-22T08:00:55.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EventBus翻译">
-<meta name="twitter:description" content="这篇文章是RxBus的权威文章的翻译,原文，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。这篇文章有三个部分：  1.事件总线快速入门 2.用RxJava实现事件总线 3.这种方法的离别思念  “RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。 第1部分：什么是事件总线？让我们来谈谈">
+<meta name="twitter:title" content="关于学习RN和微信小程序一个月随感">
+<meta name="twitter:description" content="2016.10-11.14是我学习（业余时间）RN和微信小程序一个月了，学了一些控件和事件。现在在这里做一下整理和总结。  一、React Native的实现和相关问题的解决 React Native的安装   React Native 是FaceBook去年推出的移动端通用代码的一套解决方案。总得来说，在目前为止是比较完善的。但官方的一些Demo是向IOS开发的，Android平台运行时比较麻">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161114161439853">
 
 
 
@@ -133,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/16/eventBus/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/14/rn1/"/>
 
 
 
 
 
-  <title>EventBus翻译 | 龙逝寒Android博客</title>
+  <title>关于学习RN和微信小程序一个月随感 | 龙逝寒Android博客</title>
   
 
 
@@ -306,7 +322,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/eventBus/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/14/rn1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="龙逝寒">
@@ -323,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EventBus翻译</h1>
+          <h1 class="post-title" itemprop="name headline">关于学习RN和微信小程序一个月随感</h1>
         
 
         <div class="post-meta">
@@ -335,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T01:42:58-04:00">
-                2017-07-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-14T21:20:02+08:00">
+                2016-10-14
               </time>
             
 
@@ -375,52 +391,157 @@
       
 
       
-        <p>这篇文章是RxBus的权威文章的翻译,<a href="http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/" target="_blank" rel="external">原文</a>，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。<br>这篇文章有三个部分：</p>
-<ul>
-<li>1.事件总线快速入门</li>
-<li>2.用RxJava实现事件总线</li>
-<li>3.这种方法的离别思念</li>
-</ul>
-<p>“RxBus”将不会成为一个库。实现事件总线RxJava是如此容易以至于它不能作为一个独立的库。</p>
-<h2 id="第1部分：什么是事件总线？"><a href="#第1部分：什么是事件总线？" class="headerlink" title="第1部分：什么是事件总线？"></a>第1部分：什么是事件总线？</h2><p>让我们来谈谈两个似乎相似的概念：观察者模式和发布 - 订阅模式。<br>观察者模式<br>这是一个发展模式，借助此，你的类或主对象（被称为可观察者）利用相关信息（事件）通知其他感兴趣的类或对象（称为观察者）。<br>发布 - 订阅模式<br>发布 - 订阅模式的目标和观察者模式的目标是完全一样的，即你想要一些其他的类来了解正在发生的某些事件。<br>尽管如此，观察者模式和发布 - 订阅模式之间存在一个重要的语义差别：发布 - 订阅模式的重点是外界“广播”的消息。观察者并不关注事件传给谁，而只关注事件是否已经传出。换句话说，观察者（发布者）并不关注谁是观察员（订阅者）。<br>为什么匿名？<br>它允许这个东西叫做“脱钩”，这是计算机编程具有良好的口碑。在设计中，你想尽可能的保持低耦合。<br>通常情况下，你会期望发布者对每个它需要通知的用户有直接的了解，所以当事件或消息已准备就绪时，它可以去通知他们每个人。但随着事件的总线的出现，发布者被解除该任务，并且这种独立性有所帮助，因为发布者和订阅者不必有建立两者之间相关性的逻辑代码。<br>换句话说“自觉低耦论”是你的代码在书写时就应该所思考的，这是程序员应该有的水平。<br>如何匿名？<br>在发布 - 订阅模式中一个很自然的问题是：你如何真正地实现发布者和订阅者之间的匿名？一个简单的方法是得到一个中间人，让那个中间人负责所有的通信。而事件总线就是这样的一个中间人。<br>事件总线就是这么简单。<br>常用于Android的使用的两个事件总线库是otto和EventBus。网上有大量的帖子解释如何在你的手机应用程序中实现它们。</p>
-<h2 id="第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"><a href="#第2部分：用总线RxJava实现事件（？？是“在”还是“用”）" class="headerlink" title="第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"></a>第2部分：用总线RxJava实现事件（？？是“在”还是“用”）</h2><p>我已经将使用Android上RxJava的显示世界的例子粘贴在这个GitHub库上，所以我会坚持展示其完整的实现方式。下面是执行的部分代码：</p>
-<pre><code>// this is the middleman object
-public class RxBus {
-
-private final Subject&lt;Object, Object&gt; _bus = new SerializedSubject&lt;&gt;(PublishSubject.create());
-  public void send(Object o) {
-        _bus.onNext(o);
-  }
-
-  public Observable&lt;Object&gt; toObserverable() {
-    return _bus;
-  }
+        <blockquote>
+<p>2016.10-11.14是我学习（业余时间）RN和微信小程序一个月了，学了一些控件和事件。现在在这里做一下整理和总结。</p>
+</blockquote>
+<h2 id="一、React-Native的实现和相关问题的解决"><a href="#一、React-Native的实现和相关问题的解决" class="headerlink" title="一、React Native的实现和相关问题的解决"></a>一、React Native的实现和相关问题的解决</h2><ol>
+<li>React Native的安装</li>
+</ol>
+<blockquote>
+<p>React Native 是FaceBook去年推出的移动端通用代码的一套解决方案。总得来说，在目前为止是比较完善的。但官方的一些Demo是向IOS开发的，Android平台运行时比较麻烦的。<a href="https://github.com/facebook/react-native" target="_blank" rel="external">Github地址</a>，官方有专门的人进行维护，而且更新的速度很快。Demo也在里面。</p>
+</blockquote>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先提到React Native，肯定首先提到JSX语法，是一种构造虚拟的DOM结构体,这是FaceBook团队开发。JSX可以把Html的标签直接编写JavaScript对象，使用的是Xml-like语法，这种语法需要通过JSXTransformer翻译成真实可用的JavaScript代码。既然JSX是语法，肯定有其遵循的一套书写方案。在这里就不做赘述，需要了解的可以去百度。<br>   在这里说一下需要注意的几点，否则在运行时会报错。</p>
+<pre><code> 1. React Native在导入其他模块时，在Component里面使用的对象的首字母大写。
+ 2. JSX只能执行一次运行结束的JavaScript语句（不清楚这样表述正不正确），所以像ifelse这样的无法执行。
+ 3. JSX只能执行一个代码块，就是只能存在一个根节点。
+ 4. 相关JSX的关键字和HTML的关键字冲突
+注意以上四点就可以避开很多的坑。
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其次，React Native运行的是ES6(或者兼容前代)的执行标准，如果小伙伴不了解ES6可以先去看相关的视频、书籍，毕竟ES6是下一代JavaScript的标准，与现阶段使用的JavaScript还是有不少区别的。<br>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  好了，介绍完前提的技术，现在可以进行React Native的Window下的安装了。<br>       1，安装JDK,SDK，并写入环境变量中，安装git，Python（非必须，但这貌似是开发者的标配了）<br>       2，官网上安装Node.js,<a href="https://nodejs.org/en/" target="_blank" rel="external">官网</a>，配置环境变量<br>       3，安装react-native命令行工具，npm install -g react-native-cli</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OK，其实就这两步，然后就可以在相关的文件夹中进行生产代码了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-native init MyProject</div></pre></td></tr></table></figure>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里需要等大约半个小时，，，网络好的话，小伙伴还可以使用代理，请百度。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载完成后在控制台会出现”react native android ”字样。这就说明下载成功。<br>目录：<br><img src="http://img.blog.csdn.net/20161114161439853" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看出React Native 支持Android和IOS的操作，我们的操作的入口就是index.android.js，而IOS同理。</p>
+<ol>
+<li>React Native的运行<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 到了这个步骤，说明已经下载成功，上方的步骤已经完成。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   那么现在可以打开两个软件：Android Studio和Webstorm(使用Viual Studio Code也可)。<br>  将Android项目（上图的android文件夹）导入到Android Studio中，最终图：<br>  <img src="http://img.blog.csdn.net/20161114171336635" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   在build.gradle中可以看出引用了</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &quot;com.facebook.react:react-native:+&quot;  // From node_modules</div></pre></td></tr></table></figure>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这个maven中有<br><img src="http://img.blog.csdn.net/20161114171533857" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK系列的网络请求框架，加载图片的fresco,还有支持react的jar文件。希望童鞋在使用添加ReactNative的时候勿要出现重复引用，模块重合。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将整个文件夹导入Webstorm中，目录结构：<br><img src="http://img.blog.csdn.net/20161114171845393" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里还要设置js的解析方式和运行方式，<br><img src="http://img.blog.csdn.net/20161114172029857" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意command设置为Start，就可以了。<br><img src="http://img.blog.csdn.net/20161114172410993" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里要设置为JSX，才可以解析。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你以为到这里就可以运行了？NO，工欲善其事必先利其器，我们还是先导入一个ReactNative的模板吧。<br><a href="https://github.com/virtoolswebplayer/ReactNative-LiveTemplate" target="_blank" rel="external">Github链接</a><br>直接下载下来，导入里面的ReactNative.jar文件就可以了，是WebStorm里面的Import Settings…..<br>接下来我们就可以愉快的玩耍了。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先将Android项目跑到手机上，（如果Gradle出现问题，检查下版本，是不是高于23.0.1，还有gradle的版本不要太新，我是1.3.1正常编译。现阶段的兼容性还是有问题的，出现问题的小伙伴可以在下方留言）<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后WebStorm可以直接运行，在控制台可以看到npm start就说明已经在启动了。<br>看到React packager ready.就说明已经跑起来了，在浏览器中打开：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost:8081/index.android.bundle?platform=android</div></pre></td></tr></table></figure>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果出现如下图的信息就说明正常启动，下一步就是修改软件的局域网地址。<br><img src="http://img.blog.csdn.net/20161114181756164" alt="这里写图片描述"></p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果网速不好，可以修改这里的设置网络延时时间，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const MAX_WAIT_TIME = 120000;</div></pre></td></tr></table></figure>
+<p>文件在<br><img src="http://img.blog.csdn.net/20161114175456702" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个文件曾经改变过位置，直接百度的话，可能找不到路径，以最新的路径为准。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果小伙伴的手机是小米手机，请在开发者选项里面将miui优化关闭，然后重启一下就可以了，软件刚安装有一个选项是在其他应用的上层显示，请选中。这样才能进入界面。</p>
+<blockquote>
+<p>PS:如果现在才使用ReactNative的童鞋会发现，在init项目的时候会安装yarn，，，倒霉的npm管理器的迭代会直接影响我们构建的速度，没有办法，只好在npm中装在装一个yarn,安装方式相同，npm install -g yarn，（-g是全局安装，会直接安装在AppData/npm中），重新构建 项目的时候会发现明显快了不少。</p>
+</blockquote>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;软件刚进入一般都是红底黑字，这是ReactNative 的错误界面（就是这个特色）。<br><img src="http://img.blog.csdn.net/20161115111715705" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打开Dev setting 设置电脑的IP和端口（比如192.168.0.100：8081等），前提必须在一个局域网中，重新reload一下，就可以看到界面。<br> <img src="http://img.blog.csdn.net/20161115111824111" alt="这里写图片描述"><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是错误的界面（ps:局域网链接失败，可以cmd打开控制台输入ipconfig查看当前的局域网ip）<br><img src="http://img.blog.csdn.net/20161115111802119" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们会发现这个界面上的文字与index.android.js上书写的文字雷同，我们改变index.android.js上的文字，重新reload会发现界面也随之变化。我们可以得出一个结论，这个文件就是ReactNative的入口文件。<br> <img src="http://img.blog.csdn.net/20161115111956971" alt="这里写图片描述"><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到此，ReactNative的运行已经实现。</p>
+<h1 id="3-React-Native与原生的调用"><a href="#3-React-Native与原生的调用" class="headerlink" title="3. React Native与原生的调用"></a>3. React Native与原生的调用<br></h1><p>  现在React Native已经可以跑起来了。大家可以愉快的玩耍了。上图就是界面布局，下图就是布局样式：<br>  <img src="http://img.blog.csdn.net/20161115112151422" alt="这里写图片描述"><br>  <br>React Native遵循Flex布局方式，详情请看<a href="http://reactnative.cn/docs/0.37/getting-started.html" target="_blank" rel="external">官方文档</a><br>  对于一些控件的使用，可以参考官方文档，在这里需要注意一下，对于Android来说，官方文档可能更新有些慢，有一些被放弃的属性在官方文档上依然有体现。请注意Image控件，对于Android目录下mipmap和drawable目录下的图片必须保证正确引用，引用方式：</p>
+<p>&gt;<br>&gt;</p>
+<blockquote>
+<pre><code>&lt;image source={{uri:XXXX}}/&gt;
+</code></pre><p>  请注意{}在Component非常常见，比如加注释。</p>
+</blockquote>
+<p>  对于一般的操作以后的博客再讲，本次主要是将如果调用原生控件。<br>  现在演示一下调用Toast控件。<br>  1.首先我们了解到官方有一个管理toast的js库，</p>
+<pre><code>import Toast from &apos;react-native-root-toast&apos;;
+</code></pre><p>写一个工具类实现Toast输出。<br>所以我们先安装一个库下载这个react-native-root-toast模块。使用npm安装</p>
+<pre><code>npm install react-native-root-toast
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果在webstorm中没有找到这个支持包的话，也没关系，直接新建一个js文件,叫ToastUtil.js.直接导入这个包，软件会提示你安装，然后就安装好了。<br><img src="http://img.blog.csdn.net/20161115130209008" alt="这里写图片描述"><br> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看出已经装好了。<br>  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToastUtil写法：</p>
+<pre><code>import Toast from &apos;react-native-root-toast&apos;;
+export const toastShort = (content) =&gt; {
+if (toast !== undefined) {
+    Toast.hide(toast);
 }
-</code></pre><p>你现在有一个事件总线可以使用了。<br>这是你如何将事件发布到总线：</p>
-<pre><code>@OnClick(R.id.btn_demo_rxbus_tap)
-public void onTapButtonClicked() {
-
-_rxBus.send(new TapEvent());
-}
-</code></pre><p>这是你如何倾听来自其他片段/服务等。</p>
-<pre><code>_rxBus.toObserverable()
-.subscribe(new Action1&lt;Object&gt;() {
-  @Override
-  public void call(Object event) {
-
-    if(event instanceof TapEvent) {
-      _showTapText();
-
-    }else if(event instanceof SomeOtherEvent) {
-      _doSomethingElse();
-    }
-  }
+toast = Toast.show(content.toString(), {
+    duration: Toast.durations.SHORT,
+    position: Toast.positions.CENTER,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0
 });
-</code></pre><p>在这个例子中，我们后从顶部片段（绿色部分）的事件，并从底部片段（蓝色部分）中（通过总线）收听。<br>在下面这个例子中，我们从顶部片段（绿色方）发布事件，并从底部片段（蓝色部分）收听（通过事件总线）。</p>
-<h2 id="第3部分-离别的思念"><a href="#第3部分-离别的思念" class="headerlink" title="第3部分 - 离别的思念"></a>第3部分 - 离别的思念</h2><p>死亡事件</p>
-<p>在一些情况下，知道是否有观察者监听当前总线是非常有用的。比如，如果你使用事件总线来处理你的GCM推送通知），如果应用程序是在前台 ，此时你不希望发送推送通知，这时，监听“死亡事件”是非常重要的。<br>例如，在不久前发布的婚礼派对，我们增加了“信息”到我们的应用程序。如果用户的应用程序开启（因而具有至少一个或更多的听众到总线），我们不会发送推送通知，但如果他们的应用程序在后台，那么我们发送推送通知，让他们知道聊天信息。当一个事件被发布到事件总线后，如果没有用户在听，会返回一个死亡事件。如果我们得到一个死亡事件，推送通知的将被发送出去。<br>你将怎样利用RxBus来实现呢？</p>
-<p>事实上，这很容易。受试者有一个有用的方法hasObservers，这将准确的告诉我们实现方式。这被添加RxJava的1.x release 中，所以你必须要安装RxAndroid的最新版本才能看到这种方法（0.23.0）。<br>如果你只是想在Andr​​oid应用程序中使用事件总线，你可能最好使用otto（强烈推荐）或EventBus库 。Otto有一个由注解推动的干净的API，可能更为简单易用。</p>
-<p>虽然这篇文章写得很好，翻译的不好，以下的博客将会介绍EventBus的一般使用和RXJava及RxBus的使用。<br><a href="http://blog.csdn.net/u012930328/article/details/51993346" target="_blank" rel="external">Csdn原文</a></p>
+};
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这只是举个例子，文件在根目录，所以在index.android.js中导入：</p>
+<pre><code>import {toastShort} from &apos;ToastUtil&apos;
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击事件弹出：</p>
+<pre><code>export default class yuansheng extends Component {
+render() {
+    return (
+        &lt;View style={styles.container}&gt;
+            &lt;Text style={styles.welcome}&gt;
+                Welcome to React Native!
+            &lt;/Text&gt;
+            &lt;Text style={styles.instructions}&gt;
+                To get started, edit index.android.js
+            &lt;/Text&gt;
+            &lt;Text style={styles.instructions}&gt;
+                Shake or press menu button for dev menu test
+            &lt;/Text&gt;
+            &lt;TouchableOpacity onPress={()=&gt; {
+                this.showtoast()
+            }}&gt;
+                &lt;Text&gt;Toast&lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+        &lt;/View&gt;
+    );
+}
+showtoast() {
+    toastShort(&quot;点击&quot;);
+}
+}
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或者直接使用官方封装好的js文件，ToastAndroid。<br>ToastAndroid在react-native/Libraries/Components/中，通过下图可以看出：<br><img src="http://img.blog.csdn.net/20161115132706853" alt="这里写图片描述"><br> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方封装了很多了原生控件，以供使用，这也是新版更新过来的。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用ToastAndroid，</p>
+<pre><code>import * as ToastAndroid from &quot;react-native/Libraries/Components/ToastAndroid/ToastAndroid.android&quot;;
+ showtoast() {
+    ToastAndroid.show(&apos;点击&apos;, ToastAndroid.SHORT);
+}
+</code></pre><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别忘了在import导入TouchableOpacity模块。<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这样，就可以使用Toast功能了。</p>
+<ol>
+<li>在新Android项目中打包React Native</li>
+</ol>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比较关心的是在已有的项目打包使用ReactNative，通过上文可知ReactNative使用的是Bundle，将文件传到目录，解压显示（可能流程描述的不准确）。<br> 所以我们可以通过对比和原有项目的联系。添加文件实现ReactNative功能。<br> 1，配置node_modlues,我建议直接把存在的这个文件夹拷贝过去，因为下载速度，，稍微有点慢。放在和Android 项目同级，同时将package.json和index.android.js拷贝过去，这个版本文件和入口。修改package.json里面的内容，比如项目名称。<br> 2，现在修改Android项目的文件，在项目的build.gradle添加ReactNative的仓库，</p>
+<pre><code>url &quot;$rootDir/../node_modules/react-native/android&quot;
+</code></pre><p>setting.gradle中添加</p>
+<pre><code>rootProject.name = &apos;yuansheng&apos;//所在文件夹的名称
+</code></pre><p>相关NDK的支持添加上<br>app的build.gradle中添加</p>
+<pre><code> splits {
+    abi {
+        reset()
+        enable enableSeparateBuildPerCPUArchitecture
+        universalApk false  // If true, also generate a universal APK
+        include &quot;armeabi-v7a&quot;, &quot;x86&quot;
+    }
+    }
+ // applicationVariants are e.g. debug, release
+applicationVariants.all { variant -&gt;
+    variant.outputs.each { output -&gt;
+        // For each separate APK per architecture, set a unique version code as described here:
+        // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+        def versionCodes = [&quot;armeabi-v7a&quot;:1, &quot;x86&quot;:2]
+        def abi = output.getFilter(OutputFile.ABI)
+        if (abi != null) {  // null for the universal-debug, universal-release variants
+            output.versionCodeOverride =
+                    versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+        }
+    }
+}
+compile &quot;com.facebook.react:react-native:+&quot;  // From node_modules
+
+task copyDownloadableDepsToLibs(type: Copy) {
+from configurations.compile
+into &apos;libs&apos;
+}
+</code></pre><p>设置代码：<br>在androidmanifast中添加：</p>
+<pre><code> &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;/&gt;
+  &lt;activity android:name=&quot;com.facebook.react.devsupport.DevSettingsActivity&quot; /&gt;
+</code></pre><p>Application要实现ReactApplication接口，</p>
+<pre><code>private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+    protected boolean getUseDeveloperSupport() {
+  return BuildConfig.DEBUG;
+    }
+
+@Override
+protected List&lt;ReactPackage&gt; getPackages() {
+  return Arrays.&lt;ReactPackage&gt;asList(
+      new MainReactPackage()
+  );
+}
+  };
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+      return mReactNativeHost;
+  }
+</code></pre><p>需要使用的入口是继承ReactActivity。<br>具体如何集成，我也没有找到能够100%一次性通过编译的，可能现阶段不完善吧。ReactNative的介绍先到一阶段。<br>原本想出一个微信小程序的，后来又不火了，就放弃了</p>
 
       
     </div>
@@ -450,7 +571,7 @@ _rxBus.send(new TapEvent());
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"># android</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -463,8 +584,8 @@ _rxBus.send(new TapEvent());
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/24/bigbang1/" rel="next" title="仿Big-Bang实现">
-                <i class="fa fa-chevron-left"></i> 仿Big-Bang实现
+              <a href="/2016/07/27/constranintlayout/" rel="next" title="Android新布局-ConstraintLayout详解">
+                <i class="fa fa-chevron-left"></i> Android新布局-ConstraintLayout详解
               </a>
             
           </div>
@@ -473,8 +594,8 @@ _rxBus.send(new TapEvent());
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/16/SharedPreferencesUtils/" rel="prev" title="SharedPreferencesUtils存储对象">
-                SharedPreferencesUtils存储对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/24/bigbang1/" rel="prev" title="仿Big-Bang实现">
+                仿Big-Bang实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -603,7 +724,7 @@ _rxBus.send(new TapEvent());
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1部分：什么是事件总线？"><span class="nav-number">1.</span> <span class="nav-text">第1部分：什么是事件总线？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2部分：用总线RxJava实现事件（？？是“在”还是“用”）"><span class="nav-number">2.</span> <span class="nav-text">第2部分：用总线RxJava实现事件（？？是“在”还是“用”）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3部分-离别的思念"><span class="nav-number">3.</span> <span class="nav-text">第3部分 - 离别的思念</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、React-Native的实现和相关问题的解决"><span class="nav-number">1.</span> <span class="nav-text">一、React Native的实现和相关问题的解决</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-React-Native与原生的调用"><span class="nav-number"></span> <span class="nav-text">3. React Native与原生的调用</span></a></div>
             
 
           </div>
