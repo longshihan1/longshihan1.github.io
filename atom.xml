@@ -524,7 +524,7 @@ public static void main(String[] args) {
     <link href="http://yoursite.com/2017/07/16/SharedPreferencesUtils/"/>
     <id>http://yoursite.com/2017/07/16/SharedPreferencesUtils/</id>
     <published>2017-07-16T05:42:58.000Z</published>
-    <updated>2017-07-16T10:32:21.148Z</updated>
+    <updated>2017-07-22T08:24:23.389Z</updated>
     
     <content type="html"><![CDATA[<p>SharedPreferences可以存储基本类型，在这里不多阐述。在这里主要介绍怎么存储对象。<br>在我学习优化Utils工具包的一些常见的工具类。<br>在百度上的一些关于SharedPreferences存储对象的方式的使用Base64转，或者转成json类型，存入SharedPreferences中，这样写显得很笨拙。并不符合我的需求。在此给一种新的方法（我也不确定，应该很早就有这样写的吧）。<br><a id="more"></a></p>
 <ul>
@@ -736,6 +736,8 @@ private Bitmap getBitmapFromSharedPreferences(Context context, String key, Objec
       &lt;p&gt;SharedPreferences可以存储基本类型，在这里不多阐述。在这里主要介绍怎么存储对象。&lt;br&gt;在我学习优化Utils工具包的一些常见的工具类。&lt;br&gt;在百度上的一些关于SharedPreferences存储对象的方式的使用Base64转，或者转成json类型，存入SharedPreferences中，这样写显得很笨拙。并不符合我的需求。在此给一种新的方法（我也不确定，应该很早就有这样写的吧）。&lt;br&gt;
     
     </summary>
+    
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
     
     
       <category term="android" scheme="http://yoursite.com/tags/android/"/>
