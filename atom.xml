@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-19T13:28:22.290Z</updated>
+  <updated>2017-07-22T09:00:09.079Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/07/18/dongtaidaili3/"/>
     <id>http://yoursite.com/2017/07/18/dongtaidaili3/</id>
     <published>2017-07-18T08:22:02.000Z</published>
-    <updated>2017-07-19T13:28:22.290Z</updated>
+    <updated>2017-07-22T09:00:09.079Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>前两章想必大家都知道动态代理是怎么回事，本小节的内容是动态代理的实践操作了。在Android项目中如何实现按钮的防双击（防抖动）。<br>这个在Android上又叫Hook技术</p>
@@ -183,6 +183,8 @@ public void onWindowFocusChanged(boolean hasFocus) {
     
     </summary>
     
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
@@ -193,7 +195,7 @@ public void onWindowFocusChanged(boolean hasFocus) {
     <link href="http://yoursite.com/2017/07/18/dongtaidaili1/"/>
     <id>http://yoursite.com/2017/07/18/dongtaidaili1/</id>
     <published>2017-07-18T05:17:02.000Z</published>
-    <updated>2017-07-18T12:51:08.567Z</updated>
+    <updated>2017-07-22T08:59:54.914Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>想必大家都很耳熟这个模式，或者说这个思想，但实际在项目中用的并不是很多，这节课程我们来详细描述-动态代理是怎么一回事，和使用的范围，以及一定程度的扩展，在Android中的简单实现。</p>
@@ -291,6 +293,8 @@ public static void main(String[] args) {
     
     </summary>
     
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
@@ -301,7 +305,7 @@ public static void main(String[] args) {
     <link href="http://yoursite.com/2017/07/18/dongtaidaili2/"/>
     <id>http://yoursite.com/2017/07/18/dongtaidaili2/</id>
     <published>2017-07-18T05:17:02.000Z</published>
-    <updated>2017-07-18T12:51:08.509Z</updated>
+    <updated>2017-07-22T08:59:45.391Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>从上节的学习想必大家都知道动态代理怎么写了，现在我们拓展一些，动态代理和装饰器模式，想必大家都很困惑。本小节主要介绍动态代理和装饰器模式的不同以及如何相互搭配。</p>
@@ -514,6 +518,8 @@ public static void main(String[] args) {
     
     </summary>
     
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
@@ -524,7 +530,7 @@ public static void main(String[] args) {
     <link href="http://yoursite.com/2017/07/16/SharedPreferencesUtils/"/>
     <id>http://yoursite.com/2017/07/16/SharedPreferencesUtils/</id>
     <published>2017-07-16T05:42:58.000Z</published>
-    <updated>2017-07-22T08:32:00.023Z</updated>
+    <updated>2017-07-22T08:56:17.427Z</updated>
     
     <content type="html"><![CDATA[<p>SharedPreferences可以存储基本类型，在这里不多阐述。在这里主要介绍怎么存储对象。<br>在我学习优化Utils工具包的一些常见的工具类。<br>在百度上的一些关于SharedPreferences存储对象的方式的使用Base64转，或者转成json类型，存入SharedPreferences中，这样写显得很笨拙。并不符合我的需求。在此给一种新的方法（我也不确定，应该很早就有这样写的吧）。<br><a id="more"></a></p>
 <ul>
@@ -740,7 +746,7 @@ private Bitmap getBitmapFromSharedPreferences(Context context, String key, Objec
       <category term="android" scheme="http://yoursite.com/categories/android/"/>
     
     
-      <category term="/android" scheme="http://yoursite.com/tags/android/"/>
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
   </entry>
   
@@ -749,7 +755,7 @@ private Bitmap getBitmapFromSharedPreferences(Context context, String key, Objec
     <link href="http://yoursite.com/2017/07/16/eventBus/"/>
     <id>http://yoursite.com/2017/07/16/eventBus/</id>
     <published>2017-07-16T05:42:58.000Z</published>
-    <updated>2017-07-16T10:31:49.708Z</updated>
+    <updated>2017-07-22T09:00:22.881Z</updated>
     
     <content type="html"><![CDATA[<p>这篇文章是RxBus的权威文章的翻译,<a href="http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/" target="_blank" rel="external">原文</a>，也算是写Retrofit+RxJava学习的开端 ，在以后的博客中会陆续介绍这种框架使用的好处（可能不会连续发布）。<br>这篇文章有三个部分：</p>
 <ul>
@@ -805,6 +811,8 @@ _rxBus.send(new TapEvent());
     
     </summary>
     
+      <category term="page" scheme="http://yoursite.com/categories/page/"/>
+    
     
       <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
@@ -815,7 +823,7 @@ _rxBus.send(new TapEvent());
     <link href="http://yoursite.com/2016/10/24/bigbang1/"/>
     <id>http://yoursite.com/2016/10/24/bigbang1/</id>
     <published>2016-10-24T09:57:02.000Z</published>
-    <updated>2017-07-19T14:34:59.975Z</updated>
+    <updated>2017-07-22T08:58:31.252Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><a href="http://blog.csdn.net/u012930328/article/details/52913912" target="_blank" rel="external">原文地址</a><br><br>前几天去看了锤子的发布会，没想到这次还是诚意满满。作为程序员，就关注了在本次发布会出现的两大创意（其实只能算得上微创新）。第一个就是本次要说的big-bang，另一个是One Step。</p>
@@ -1132,6 +1140,8 @@ private static void addNote(Schema schema) {
     
     </summary>
     
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+    
     
       <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
@@ -1316,7 +1326,7 @@ protected List&lt;ReactPackage&gt; getPackages() {
     <link href="http://yoursite.com/2016/07/27/constranintlayout/"/>
     <id>http://yoursite.com/2016/07/27/constranintlayout/</id>
     <published>2016-07-27T11:18:02.000Z</published>
-    <updated>2017-07-19T14:10:22.842Z</updated>
+    <updated>2017-07-22T08:58:41.566Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><a href="http://blog.csdn.net/u012930328/article/details/52048531" target="_blank" rel="external">原文地址</a><br><br>谷歌在2016年的IO大会上推出的一种新的布局方式—-ConstraintLayout，这局是一种约束型的布局方式。在设置和介绍上类似IOS的自动布局。</p>
@@ -1355,6 +1365,8 @@ protected List&lt;ReactPackage&gt; getPackages() {
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/u012930328/article/details/52048531&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址&lt;/a&gt;&lt;br&gt;&lt;br&gt;谷歌在2016年的I
     
     </summary>
+    
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
     
     
       <category term="android" scheme="http://yoursite.com/tags/android/"/>
